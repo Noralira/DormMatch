@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">DormMatch</string>
+    <string name="app_name">welcome</string>
+    <string name="KEY_PRESS_ME">welcome</string>
+    <string name="searchbar_hint" />
+    <string name="app_label" />
+    <string name="search_hint" />
 </resources>
