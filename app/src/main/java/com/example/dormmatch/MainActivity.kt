@@ -11,8 +11,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun btnLogin(view: View) {   setContentView(R.layout.home_user)}
-    }
-
     fun btnRegister(view: View) {
         setContentView(R.layout.registo_activity)
     }
@@ -20,6 +18,4 @@ class MainActivity : AppCompatActivity() {
     fun btnVoltar(view: View) {
         setContentView(R.layout.login_activity)
     }
-
-
 }
