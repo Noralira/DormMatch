@@ -11,4 +11,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun btnLogin(view: View) {   setContentView(R.layout.home_user)}
+    }
+
+    fun btnRegister(view: View) {
+        setContentView(R.layout.registo_activity)
+    }
+
+    fun btnVoltar(view: View) {
+        setContentView(R.layout.login_activity)
+    }
+
+
 }

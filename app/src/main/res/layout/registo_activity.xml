@@ -15,6 +15,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
+        <Button
+            android:id="@+id/btnVoltar"
+            android:onClick="btnVoltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue"
+
+            android:text="voltar"/>
 
         <TextView
             android:id="@+id/textView"
@@ -114,8 +122,6 @@
             android:layout_marginTop="90dp"
             android:backgroundTint="@color/blue"
             android:text="Criar Conta"
-
-
             />
     </LinearLayout>
 
