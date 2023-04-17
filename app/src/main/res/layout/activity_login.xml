@@ -1,9 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:background="@color/background">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="60dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DormMatch"
+            android:textColor="@color/blue"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/house_foreground" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome de Utilizador"
+        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/ll_1"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"/>
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_username"
+        android:background="@drawable/rounded_edit_text"
+        android:paddingVertical="5dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Palavra-passe"
+        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@id/et_username"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"/>
+
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_password"
+        android:background="@drawable/rounded_edit_text"
+        android:paddingVertical="5dp"
+        android:layout_centerHorizontal="true"
+        android:radius="10dp" />
+
+
+
+    <TextView
+        android:id="@+id/et_recoverPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_marginTop="10dp"
+        android:text="Recuperar palavra-passe"
+        android:textColor="@color/blue"
+        android:textSize="15dp"
+        android:layout_below="@id/et_password"
+        android:paddingHorizontal="50dp"/>
+
+
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="btnLogin"
+        android:text="Entrar"
+        android:layout_below="@+id/et_recoverPassword"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/btnConta"
+        android:onClick="btnRegister"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_button"
+        android:text="Criar Conta"
+        android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
