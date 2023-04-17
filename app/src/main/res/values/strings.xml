@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">welcome</string>
-    <string name="KEY_PRESS_ME">welcome</string>
-    <string name="searchbar_hint" />
-    <string name="app_label" />
-    <string name="search_hint" />
+    <string name="app_name">DormMatch</string>
+    <string name="welcome">Welcome</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="recover_password">Recover password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
 </resources>
