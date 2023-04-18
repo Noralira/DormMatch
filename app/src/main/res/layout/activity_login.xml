@@ -72,7 +72,8 @@
         android:background="@drawable/rounded_edit_text"
         android:paddingVertical="5dp"
         android:layout_centerHorizontal="true"
-        android:radius="10dp" />
+        android:radius="10dp"
+        android:inputType="textPassword"/>
 
 
 
