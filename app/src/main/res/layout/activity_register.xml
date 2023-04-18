@@ -109,27 +109,27 @@
 
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btn_create_account"
         android:textSize="14dp"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="@drawable/rounded_button"
         android:onClick="btnLogin"
-        android:text="@string/create_account"
+        android:text="Create Account"
         android:layout_below="@+id/et_country"
         android:layout_centerHorizontal="true"/>
 
     <Button
-        android:id="@+id/btnConta"
+        android:id="@+id/btn_return"
         android:onClick="btnRegister"
         android:textSize="14dp"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/rounded_button"
-        android:text="@string/go_back"
-        android:layout_below="@+id/btnLogin"
+        android:text="Return"
+        android:layout_below="@+id/btn_create_account"
         android:layout_centerHorizontal="true"/>
 
 
