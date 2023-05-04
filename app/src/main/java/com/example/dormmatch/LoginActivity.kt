@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import com.example.dormmatch.databinding.LoginActivityBinding
 import com.example.dormmatch.fragments.Home
+import com.google.firebase.FirebaseApp
 
 class LoginActivity : AppCompatActivity() {
     private val menuActivityRequestCode = 1
@@ -17,6 +18,8 @@ class LoginActivity : AppCompatActivity() {
         binding = LoginActivityBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        FirebaseApp.initializeApp(this)
 
         //setContentView(R.layout.login_activity)
     }
