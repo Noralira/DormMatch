@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.R
+import com.example.dormmatch.adapters.propriedadeAdapter
+import com.example.dormmatch.models.propriedade.propriedadeViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +23,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Home.newInstance] factory method to
  * create an instance of this fragment.
  */
+private lateinit var viewModel: propriedadeViewModel
+private lateinit var propriedadeRecyclerView: RecyclerView
+private lateinit var adapter: propriedadeAdapter
+
+
 class Home : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -38,6 +49,8 @@ class Home : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -57,4 +70,23 @@ class Home : Fragment() {
                 }
             }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        propriedadeRecyclerView = view.findViewById(R.id.recView)
+        propriedadeRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        propriedadeRecyclerView.setHasFixedSize(true)
+        adapter = propriedadeAdapter()
+        propriedadeRecyclerView.adapter = adapter
+
+        viewModel = ViewModelProvider(this).get(propriedadeViewModel::class.java)
+
+        viewModel.allPropriedade.observe(viewLifecycleOwner, Observer {
+
+            adapter.updatePropriedadeList(it)
+
+        })
+    }
+
 }
