@@ -13,4 +13,5 @@
     <string name="favourite">Favoritos</string>
     <string name="map">Mapa</string>
     <string name="settings">Definições</string>
+    <string name="room_title">Titulo Quarto</string>
 </resources>

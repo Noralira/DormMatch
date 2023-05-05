@@ -21,4 +21,13 @@
     <string name="favourite">Favourites</string>
     <string name="map">Map</string>
     <string name="settings">Settings</string>
+    <string name="room_title">Room Title</string>
+    <string name="features">Features</string>
+    <string name="wi_fi">Wi-Fi</string>
+    <string name="maquina_lavar">Máquina de Lavar</string>
+    <string name="mobilia">Mobilia</string>
+    <string name="descricao">Descrição</string>
+    <string name="call">Contactar</string>
+    <string name="contacto">Contacto:</string>
+    <string name="ar_condicionado">Ar Condicionado</string>
 </resources>
