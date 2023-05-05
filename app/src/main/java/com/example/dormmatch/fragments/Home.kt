@@ -1,5 +1,6 @@
 package com.example.dormmatch.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.R
+import com.example.dormmatch.ViewRoom
 import com.example.dormmatch.adapters.propriedadeAdapter
+import com.example.dormmatch.models.propriedade.Propriedade
 import com.example.dormmatch.models.propriedade.propriedadeViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +29,8 @@ private const val ARG_PARAM2 = "param2"
 private lateinit var viewModel: propriedadeViewModel
 private lateinit var propriedadeRecyclerView: RecyclerView
 private lateinit var adapter: propriedadeAdapter
+
+private lateinit var propriedadeArrayList: ArrayList<Propriedade>
 
 
 class Home : Fragment() {
@@ -74,10 +79,12 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        propriedadeArrayList = arrayListOf<Propriedade>()
+
         propriedadeRecyclerView = view.findViewById(R.id.recView)
         propriedadeRecyclerView.layoutManager = LinearLayoutManager(this.context)
         propriedadeRecyclerView.setHasFixedSize(true)
-        adapter = propriedadeAdapter()
+        adapter = propriedadeAdapter(propriedadeArrayList, this)
         propriedadeRecyclerView.adapter = adapter
 
         viewModel = ViewModelProvider(this).get(propriedadeViewModel::class.java)
@@ -87,6 +94,14 @@ class Home : Fragment() {
             adapter.updatePropriedadeList(it)
 
         })
+    }
+
+      fun onStudentClickItem(position: Int) {
+        val idProp = propriedadeArrayList[position].idPropriedade
+
+        val intent = Intent(context, ViewRoom::class.java)
+        intent.putExtra("idPropriedade", idProp)
+        startActivity(intent)
     }
 
 }

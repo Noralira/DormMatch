@@ -7,12 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.R
+import com.example.dormmatch.fragments.Home
 import com.example.dormmatch.models.propriedade.Propriedade
 import com.squareup.picasso.Picasso
 
-class propriedadeAdapter:  RecyclerView.Adapter<propriedadeAdapter.AnnounceListViewHolder>() {
-
-    private val propriedadeList = ArrayList<Propriedade>()
+class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, private val onAnnouceClickListenner: Home):  RecyclerView.Adapter<propriedadeAdapter.AnnounceListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnnounceListViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -52,6 +51,10 @@ class propriedadeAdapter:  RecyclerView.Adapter<propriedadeAdapter.AnnounceListV
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }*/
+
+        holder.itemView.setOnClickListener {
+            onAnnouceClickListenner.onStudentClickItem(position)
+        }
 
     }
     class AnnounceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
