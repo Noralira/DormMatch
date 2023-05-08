@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DormMatch</string>
-    <string name="KEY_PRESS_ME">Bem Vindo</string>
+    <string name="search_hint">Pesquisar...</string>
+    <string name="home">Início</string>
+    <string name="welcome">Bem-vindo!</string>
+    <string name="category">Categoria</string>
+    <string name="house">Casa</string>
+    <string name="apart">Apart.</string>
+    <string name="room">Quarto</string>
+    <string name="other">Outros</string>
+    <string name="announce">Anúncios</string>
+    <string name="favourite">Favoritos</string>
+    <string name="map">Mapa</string>
+    <string name="settings">Definições</string>
+    <string name="room_title">Titulo Quarto</string>
 </resources>
