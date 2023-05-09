@@ -14,6 +14,7 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBindings
 import com.example.dormmatch.R
+import com.example.dormmatch.adapters.MyInfoWindowAdapter
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -123,6 +124,8 @@ class Map : Fragment(), OnMapReadyCallback {
 
         val address = "Avenida do Atlântico Viana do Castelo"
 
+        //googleMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
+
         // ZOOM AND MOVE CAMERA NA LOCALIZAÇÃO ATUAL
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(getCoord(address)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoord(address), 18.0f))
@@ -130,7 +133,6 @@ class Map : Fragment(), OnMapReadyCallback {
         for (i in 0 until localizacao.size) {
             googleMap.addMarker(MarkerOptions().position(getCoord(localizacao[i])).title(titulo[i]).snippet(descricao[i]))
         }
-
 
     }
 
