@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.R
 import com.example.dormmatch.fragments.Home
 import com.example.dormmatch.models.propriedade.Propriedade
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, private val onAnnouceClickListenner: Home):  RecyclerView.Adapter<propriedadeAdapter.AnnounceListViewHolder>() {
@@ -39,19 +43,32 @@ class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, p
         holder.address.text = currentList.localizacao
         holder.rent.text = currentList.preco.toString() + " € / mês"
         holder.rooms.text = currentList.nQuartos.toString() + " Quartos"
-        val imagem = "https://st3.idealista.pt/news/arquivos/styles/fullwidth_xl_2x/public/2021-11/isaac-martin-wh2afgo-rt0-unsplash.jpg?VersionId=Thj_5X7rWKL2m9iZZMQcPC6W_E2nBOGo&itok=VSl7gF0m"
-        Picasso.get().load(currentList.imagem).into(holder.foto)
-        /*db.collection("propriedade")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
+
+        // atraves do codigo do anuncio vou buscar uma imagem a BD
+        val ref = FirebaseDatabase.getInstance().getReference("foto")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    var conta = 0
+                    for (anuncioSnap in snapshot.children) {
+                        val idP = "${anuncioSnap.child("idPropriedade").value}"
+                        if (idP.equals(currentList.idPropriedade)) {
+                            val image = "${anuncioSnap.child("imageData").value}"
+                            Picasso.get().load(image).into(holder.foto)
+                            conta += 1
+                        }
+                    }
+                    if (conta == 0) {
+                        val image = "https://wallpapers.com/images/featured-full/blank-white-7sn5o1woonmklx1h.jpg"
+                        Picasso.get().load(image).into(holder.foto)
+                    }
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }*/
 
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
         holder.itemView.setOnClickListener {
             onAnnouceClickListenner.onStudentClickItem(position)
         }
