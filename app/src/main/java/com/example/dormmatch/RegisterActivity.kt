@@ -24,6 +24,6 @@ class RegisterActivity : AppCompatActivity() {
     fun btnCreateAccount(view: View) {
         setContentView(R.layout.login_activity)
 
-        // notificar se for conta for criada com sucesso
+        // notificar se conta for criada com sucesso
     }
 }
