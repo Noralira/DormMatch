@@ -4,16 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.dormmatch.databinding.LoginActivityBinding
 import com.google.firebase.FirebaseApp
+import com.example.dormmatch.databinding.MenuBottomNavbarBinding
+
 
 class LoginActivity : AppCompatActivity() {
     private val menuActivityRequestCode = 1
-    private lateinit var binding: LoginActivityBinding
+    private lateinit var binding: MenuBottomNavbarBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LoginActivityBinding.inflate(layoutInflater)
+        binding = MenuBottomNavbarBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
