@@ -11,7 +11,6 @@
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <string name="home">Home</string>
-    <string name="welcome">Welcome!</string>
     <string name="category">Category</string>
     <string name="house">House</string>
     <string name="apart">Apart.</string>
@@ -31,7 +30,6 @@
     <string name="contacto">Contact:</string>
     <string name="ar_condicionado">Air Conditioning</string>
     <string name="galeria">Gallery</string>
-    <string name="app_name">DormMatch</string>
     <string name="welcome">Welcome</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
