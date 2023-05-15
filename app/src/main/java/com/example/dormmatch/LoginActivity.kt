@@ -4,14 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import com.example.dormmatch.databinding.LoginActivityBinding
-import com.example.dormmatch.fragments.Home
 import com.google.firebase.FirebaseApp
 
 class LoginActivity : AppCompatActivity() {
     private val menuActivityRequestCode = 1
-    private lateinit var binding:LoginActivityBinding
+    private lateinit var binding: LoginActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,4 +29,5 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
+
 }

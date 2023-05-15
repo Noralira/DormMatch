@@ -17,7 +17,4 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    fun btnVoltar(view: View) {
-        setContentView(R.layout.login_activity)
-    }
 }
