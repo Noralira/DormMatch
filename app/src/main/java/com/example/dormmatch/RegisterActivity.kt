@@ -17,7 +17,13 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    fun btnVoltar(view: View) {
+    fun btnReturn(view: View) {
         setContentView(R.layout.login_activity)
+    }
+
+    fun btnCreateAccount(view: View) {
+        setContentView(R.layout.login_activity)
+
+        // notificar se for conta for criada com sucesso
     }
 }
