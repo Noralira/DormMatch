@@ -1,129 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/background">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:text="Create Account"
+        android:paddingVertical="50dp"
+        android:layout_centerHorizontal="true"/>
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/title"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"/>
 
-        <Button
-            android:id="@+id/btnVoltar"
-            android:onClick="btnVoltar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-
-            android:text="voltar"/>
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="173dp"
-            android:layout_height="39dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="80dp"
-            android:text="DormMatch"
-            android:textColor="@color/blue"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="69dp"
-            android:layout_height="83dp"
-            android:layout_marginLeft="250dp"
-            android:layout_marginTop="-60dp"
-            android:src="@drawable/house_foreground"
-
-            />
-
-        <TextView
-            android:id="@+id/nome"
-            android:layout_width="243dp"
-            android:layout_height="39dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="40dp"
-            android:text="Nome de Utilizador"
-            android:textColor="@color/blue"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="294dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp" />
-
-        <TextView
-            android:id="@+id/pass"
-            android:layout_width="243dp"
-            android:layout_height="39dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="40dp"
-            android:text="Palavra-passe"
-            android:textColor="@color/blue"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_username"
+        android:background="@drawable/rounded_edit_text"
+        android:paddingVertical="5dp"
+        android:layout_centerHorizontal="true"/>
 
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="294dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp" />
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="243dp"
-            android:layout_height="39dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="40dp"
-            android:text="Email"
-            android:textColor="@color/blue"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@id/et_username"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"/>
 
 
-        <EditText
-            android:id="@+id/em"
-            android:layout_width="294dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp" />
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_password"
+        android:background="@drawable/rounded_edit_text"
+        android:paddingVertical="5dp"
+        android:layout_centerHorizontal="true"
+        android:radius="10dp"
+        android:inputType="textPassword" />
 
-        <TextView
-            android:id="@+id/pais"
-            android:layout_width="243dp"
-            android:layout_height="39dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="40dp"
-            android:text="País"
-            android:textColor="@color/blue"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@id/et_password"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"/>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_email"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_edit_text"
+        android:inputType="textEmailAddress"
+        android:paddingVertical="5dp"
+        android:radius="10dp" />
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Country"
+        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@id/et_email"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"/>
+
+    <EditText
+        android:id="@+id/et_country"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_country"
+        android:background="@drawable/rounded_edit_text"
+        android:paddingVertical="5dp"
+        android:layout_centerHorizontal="true"
+        android:radius="10dp" />
 
 
-        <EditText
-            android:id="@+id/pai"
-            android:layout_width="294dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp" />
+    <Button
+        android:id="@+id/btn_create_account"
+        android:textSize="14dp"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="btnLogin"
+        android:text="Create Account"
+        android:layout_below="@+id/et_country"
+        android:layout_centerHorizontal="true"/>
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="90dp"
-            android:backgroundTint="@color/blue"
-            android:text="Criar Conta"
-            />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_return"
+        android:onClick="btnRegister"
+        android:textSize="14dp"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_button"
+        android:text="Return"
+        android:layout_below="@+id/btn_create_account"
+        android:layout_centerHorizontal="true"/>
 
 
-</ScrollView>
+</RelativeLayout>
