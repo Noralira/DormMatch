@@ -48,6 +48,7 @@ class Map : Fragment(), OnMapReadyCallback {
     private lateinit var descricao: ArrayList<String>
     private lateinit var imagem: ArrayList<String>
     private lateinit var titulo: ArrayList<String>
+    private lateinit var idPropriedade: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +97,7 @@ class Map : Fragment(), OnMapReadyCallback {
         descricao = arrayListOf()
         imagem = arrayListOf()
         titulo = arrayListOf()
+        idPropriedade = arrayListOf()
     }
 
     companion object {
@@ -124,14 +126,14 @@ class Map : Fragment(), OnMapReadyCallback {
 
         val address = "Avenida do Atlântico Viana do Castelo"
 
-        //googleMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
+        googleMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext(), imagem))
 
         // ZOOM AND MOVE CAMERA NA LOCALIZAÇÃO ATUAL
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(getCoord(address)))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoord(address), 18.0f))
 
         for (i in 0 until localizacao.size) {
-            googleMap.addMarker(MarkerOptions().position(getCoord(localizacao[i])).title(titulo[i]).snippet(descricao[i]))
+            googleMap.addMarker(MarkerOptions().position(getCoord(localizacao[i])).title(imagem[i]).snippet(titulo[i] + '_' + descricao[i]))
         }
 
     }
@@ -152,14 +154,14 @@ class Map : Fragment(), OnMapReadyCallback {
                     if(snapshot.exists()){
                         for(snap in snapshot.children){
                             val loc = "${snap.child("localizacao").value}"
+                            val idP = "${snap.child("idPropriedade").value}"
                             val desc = "${snap.child("descricao").value}"
-                            val img = "${snap.child("imagem").value}"
                             val title = "${snap.child("titulo").value}"
 
                             localizacao.add(loc)
                             descricao.add(desc)
-                            imagem.add(img)
                             titulo.add(title)
+                            idPropriedade.add(idP)
                         }
                     }
                 }
@@ -168,6 +170,35 @@ class Map : Fragment(), OnMapReadyCallback {
 
                 }
             })
+
+        // atraves do codigo do anuncio vou buscar uma imagem a BD
+        val ref2 = FirebaseDatabase.getInstance().getReference("foto")
+        ref2.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    var conta = 0
+                    for (anuncioSnap in snapshot.children) {
+                        val idP = "${anuncioSnap.child("idPropriedade").value}"
+                        for(idProp in idPropriedade){
+                            if (idP.equals(idProp)) {
+                                val image = "${anuncioSnap.child("imageData").value}"
+                                imagem.add(image)
+                                conta += 1
+                            }
+                        }
+
+                    }
+                    if (conta == 0) {
+                        val image = "https://wallpapers.com/images/featured-full/blank-white-7sn5o1woonmklx1h.jpg"
+                        imagem.add(image)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
 
     }
