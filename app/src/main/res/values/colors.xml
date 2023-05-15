@@ -13,5 +13,7 @@
     <color name="house_background">#FAFAFA</color>
     <color name="background">#FAFAFA</color>
     <color name="edit_text">#EDEEF1</color>
+    <color name="primaryColor">#2C465F</color>
+    <color name="fav">#E91D10</color>
 
 </resources>
