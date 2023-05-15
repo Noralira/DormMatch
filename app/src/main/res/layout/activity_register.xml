@@ -26,7 +26,8 @@
         android:textStyle="bold"
         android:layout_below="@+id/title"
         android:paddingHorizontal="50dp"
-        android:paddingVertical="10dp"/>
+        android:paddingVertical="10dp"
+        android:onClick="btnCreateAccount" />
 
     <EditText
         android:id="@+id/et_username"
@@ -115,14 +116,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:background="@drawable/rounded_button"
-        android:onClick="btnLogin"
+        android:onClick="btnCreateAccount"
         android:text="Create Account"
         android:layout_below="@+id/et_country"
         android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/btn_return"
-        android:onClick="btnRegister"
+        android:onClick="btnReturn"
         android:textSize="14dp"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
