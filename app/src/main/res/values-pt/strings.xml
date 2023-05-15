@@ -19,4 +19,12 @@
     <string name="recover_password">Recuperar palavra-passe</string>
     <string name="login">Entrar</string>
     <string name="create_account">Criar Conta</string>
+    <string name="features">Características</string>
+    <string name="maquina_lavar">Máquina de Lavar</string>
+    <string name="mobilia">Mobilia</string>
+    <string name="descricao">Descrição</string>
+    <string name="call">Contactar</string>
+    <string name="contacto">Contacto:</string>
+    <string name="ar_condicionado">Ar Condicionado</string>
+    <string name="galeria">Galeria</string>
 </resources>
