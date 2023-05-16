@@ -5,14 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dormmatch.databinding.ActivityLoginBinding
+import com.example.dormmatch.databinding.ActivityRegisterBinding
 import com.example.dormmatch.databinding.MenuBottomNavbarBinding
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding: RegisterActivityBinding
+    private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = RegisterActivityBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
     }
