@@ -86,7 +86,30 @@
         android:textStyle="bold" />
 
 
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="390dp"
+        android:src="@drawable/_icon__heart_" />
 
+    <TextView
+        android:id="@+id/fav"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="395dp"
+        android:text="Favoritos"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/_icon__chevron_down_" />
 
     <ImageView
         android:layout_width="20dp"

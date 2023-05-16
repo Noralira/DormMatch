@@ -3,7 +3,6 @@
     <string name="app_name">DormMatch</string>
     <string name="search_hint">Pesquisar...</string>
     <string name="home">Início</string>
-    <string name="welcome">Bem-vindo!</string>
     <string name="category">Categoria</string>
     <string name="house">Casa</string>
     <string name="apart">Apart.</string>
@@ -14,4 +13,18 @@
     <string name="map">Mapa</string>
     <string name="settings">Definições</string>
     <string name="room_title">Titulo Quarto</string>
+    <string name="welcome">Bem Vindo</string>
+    <string name="username">Nome de Utilizador</string>
+    <string name="password">Palavra-Passe</string>
+    <string name="recover_password">Recuperar palavra-passe</string>
+    <string name="login">Entrar</string>
+    <string name="create_account">Criar Conta</string>
+    <string name="features">Características</string>
+    <string name="maquina_lavar">Máquina de Lavar</string>
+    <string name="mobilia">Mobilia</string>
+    <string name="descricao">Descrição</string>
+    <string name="call">Contactar</string>
+    <string name="contacto">Contacto:</string>
+    <string name="ar_condicionado">Ar Condicionado</string>
+    <string name="galeria">Galeria</string>
 </resources>

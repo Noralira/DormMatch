@@ -11,6 +11,7 @@
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <string name="home">Home</string>
+    <string name="welcome">Welcome!</string>
     <string name="category">Category</string>
     <string name="house">House</string>
     <string name="apart">Apart.</string>
@@ -21,11 +22,13 @@
     <string name="map">Map</string>
     <string name="settings">Settings</string>
     <string name="room_title">Room Title</string>
-    <string name="wi_fi" translatable="false">Wi-Fi</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="recover_password">Recover password</string>
-    <string name="login">Login</string>
-    <string name="create_account">Create Account</string>
-
+    <string name="features">Features</string>
+    <string name="wi_fi">Wi-Fi</string>
+    <string name="maquina_lavar">Máquina de Lavar</string>
+    <string name="mobilia">Mobilia</string>
+    <string name="descricao">Descrição</string>
+    <string name="call">Contactar</string>
+    <string name="contacto">Contacto:</string>
+    <string name="ar_condicionado">Ar Condicionado</string>
+    <string name="galeria">Galeria</string>
 </resources>
