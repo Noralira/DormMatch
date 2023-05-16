@@ -10,11 +10,11 @@ import com.example.dormmatch.databinding.MenuBottomNavbarBinding
 
 class LoginActivity : AppCompatActivity() {
     private val menuActivityRequestCode = 1
-    private lateinit var binding: MenuBottomNavbarBinding
+    private lateinit var binding: LoginActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MenuBottomNavbarBinding.inflate(layoutInflater)
+        binding = LoginActivityBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
