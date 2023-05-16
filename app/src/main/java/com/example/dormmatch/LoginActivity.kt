@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.dormmatch.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseApp
+import com.example.dormmatch.databinding.MenuBottomNavbarBinding
 
 
 class LoginActivity : AppCompatActivity() {
@@ -32,4 +33,3 @@ class LoginActivity : AppCompatActivity() {
     }
 
 }
-
