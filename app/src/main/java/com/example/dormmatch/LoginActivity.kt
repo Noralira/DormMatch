@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import com.example.dormmatch.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseApp
 import com.example.dormmatch.databinding.MenuBottomNavbarBinding
+import com.google.firebase.database.FirebaseDatabase
 
 
 class LoginActivity : AppCompatActivity() {
@@ -25,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     }
     fun btnLogin(view: View) {
         //setContentView(R.layout.activity_main)
+        checkLogin()
         startActivityForResult(Intent(this, MenuActivity::class.java), menuActivityRequestCode)
     }
     fun btnRegister(view: View) {
@@ -32,4 +35,14 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun checkLogin(view: View) {
+        val username = findViewById<EditText>(R.id.et_username).text.toString();
+        val password = findViewById<EditText>(R.id.et_password).text.toString();
+
+        getUsersDB()
+    }
+
+    fun getUsersDB() {
+        val ref = FirebaseDatabase.getInstance().getReference("user")
+    }
 }
