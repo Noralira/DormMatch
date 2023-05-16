@@ -5,17 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import com.example.dormmatch.databinding.LoginActivityBinding
+import com.example.dormmatch.databinding.ActivityLoginBinding
 import com.example.dormmatch.fragments.Home
 import com.google.firebase.FirebaseApp
 
 class LoginActivity : AppCompatActivity() {
     private val menuActivityRequestCode = 1
-    private lateinit var binding:LoginActivityBinding
+    private lateinit var binding:ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LoginActivityBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
