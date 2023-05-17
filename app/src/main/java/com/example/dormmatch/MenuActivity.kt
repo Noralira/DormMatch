@@ -1,7 +1,6 @@
 package com.example.dormmatch
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dormmatch.databinding.MenuBottomNavbarBinding
@@ -22,7 +21,7 @@ class MenuActivity: AppCompatActivity() {
             when(it.itemId){
                 R.id.home-> replaceFragment(Home())
                 R.id.favourite-> replaceFragment(Favourite())
-                R.id.map-> replaceFragment(Map())
+                R.id.map-> replaceFragment(Maps())
                 R.id.settings-> replaceFragment(Settings())
 
                 else ->{}
