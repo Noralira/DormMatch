@@ -10,8 +10,11 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.dormmatch.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 
@@ -19,19 +22,22 @@ class LoginActivity : AppCompatActivity() {
     private val menuActivityRequestCode = 1
     private lateinit var binding: ActivityLoginBinding
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
+        auth = Firebase.auth
+
         FirebaseApp.initializeApp(this)
 
-        //setContentView(R.layout.login_activity)
     }
 
     private fun signIn(email: String, password: String) {
-        // [START sign_in_with_email]
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -50,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
                     updateUI(null)
                 }
             }
-        // [END sign_in_with_email]
     }
 
     fun btnLogin(view: View) {
@@ -65,5 +70,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
+        val intent = Intent(this, MenuActivity::class.java)
+        intent.putExtra("user", user)
+        startActivity(intent)
     }
 }
