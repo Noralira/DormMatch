@@ -17,9 +17,8 @@ class ProfileActivity : AppCompatActivity() {
         binding = PerfilActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val btnBack = findViewById<ImageView>(R.id.backButton)
-        btnBack.setOnClickListener{
-            super.onBackPressed()
+        binding.backButton.setOnClickListener{
+            onBackPressed()
         }
     }
 
