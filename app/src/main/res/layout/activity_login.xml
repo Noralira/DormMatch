@@ -30,10 +30,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tv_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/username"
+        android:text="@string/email"
         android:textColor="@color/blue"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -45,7 +45,7 @@
         android:id="@+id/et_username"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_username"
+        android:layout_below="@+id/tv_email"
         android:background="@drawable/rounded_edit_text"
         android:paddingVertical="5dp"
         android:layout_centerHorizontal="true"/>
