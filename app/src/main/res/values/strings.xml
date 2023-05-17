@@ -40,4 +40,10 @@
     <string name="perfil">Perfil</string>
     <string name="configuracoes">Configurações</string>
     <string name="traducao">Tradução</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="wrong_email">Wrong email</string>
+    <string name="email_required">Email is required</string>
+    <string name="invalid_email">"Invalid email "</string>
+    <string name="password_required">Password is required</string>
+    <string name="password_min_length">The password must be at least 6 characters</string>
 </resources>

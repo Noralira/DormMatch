@@ -27,4 +27,10 @@
     <string name="contacto">Contacto:</string>
     <string name="ar_condicionado">Ar Condicionado</string>
     <string name="galeria">Galeria</string>
+    <string name="wrong_password">Palavra-passe errada</string>
+    <string name="wrong_email">Email errado</string>
+    <string name="email_required">O email é obrigatório</string>
+    <string name="invalid_email">Email inválido</string>
+    <string name="password_required">A palavra-passe é obrigatória</string>
+    <string name="password_min_length">A palavra-passe deve conter no mínimo 6 caracteres</string>
 </resources>

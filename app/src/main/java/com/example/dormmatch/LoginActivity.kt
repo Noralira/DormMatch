@@ -53,10 +53,10 @@ class LoginActivity : AppCompatActivity() {
 
                         if (errorCode == "ERROR_WRONG_PASSWORD") {
                             // Wrong password
-                            Toast.makeText(this, "Wrong password", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, R.string.wrong_password, Toast.LENGTH_SHORT).show()
                         }
                         if(errorCode == "ERROR_USER_NOT_FOUND") {
-                            Toast.makeText(this, "Wrong Email", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, R.string.wrong_email, Toast.LENGTH_SHORT).show()
                         }
 
                     } else {
@@ -95,11 +95,11 @@ class LoginActivity : AppCompatActivity() {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
         if (email.isEmpty()) {
-            findViewById<EditText>(R.id.et_email).error = "Email is required"
+            findViewById<EditText>(R.id.et_email).error = getString(R.string.email_required)
             return false
         }
         else if (!email.matches(emailPattern.toRegex())) {
-            findViewById<EditText>(R.id.et_email).error = "Invalid email address"
+            findViewById<EditText>(R.id.et_email).error = getString(R.string.invalid_email)
             return false
         }
 
@@ -107,14 +107,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkPassword(password: String):Boolean {
-        val minLength = 6
 
         if (password.isEmpty()) {
-            findViewById<EditText>(R.id.et_password).error = "Password is required"
+            findViewById<EditText>(R.id.et_password).error = getString(R.string.password_required)
             return false
         }
-        else if (password.length < minLength) {
-            findViewById<EditText>(R.id.et_password).error = "Password must be at least $minLength characters"
+        else if (password.length < 6) {
+            findViewById<EditText>(R.id.et_password).error = getString(R.string.password_min_length)
             return false
         }
 
