@@ -86,40 +86,18 @@
         android:paddingVertical="5dp"
         android:radius="10dp" />
 
-    <TextView
-        android:id="@+id/tv_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Country"
-        android:textColor="@color/blue"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:layout_below="@id/et_email"
-        android:paddingHorizontal="50dp"
-        android:paddingVertical="10dp"/>
-
-    <EditText
-        android:id="@+id/et_country"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_country"
-        android:background="@drawable/rounded_edit_text"
-        android:paddingVertical="5dp"
-        android:layout_centerHorizontal="true"
-        android:radius="10dp" />
-
 
     <Button
         android:id="@+id/btn_create_account"
-        android:textSize="14dp"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_below="@+id/et_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="147dp"
         android:background="@drawable/rounded_button"
         android:onClick="btnCreateAccount"
         android:text="Create Account"
-        android:layout_below="@+id/et_country"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="14dp" />
 
     <Button
         android:id="@+id/btn_return"
