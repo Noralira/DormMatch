@@ -57,7 +57,7 @@ class RegisterActivity : AppCompatActivity() {
                     user?.updateProfile(userProfileChangeRequest)
                         ?.addOnCompleteListener { updateTask ->
                             if (updateTask.isSuccessful) {
-                                showPopup(this, "Information", "Account successfully created.", user)
+                                showPopup(this, getString(R.string.information), getString(R.string.account_created), user)
 
                             } else {
                                 // Failed to update additional user information
@@ -113,7 +113,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun checkUsername(username: String):Boolean {
 
         if (username.isEmpty()) {
-            findViewById<EditText>(R.id.et_username).error = "Username is required"
+            findViewById<EditText>(R.id.et_username).error = getString(R.string.username_required)
             return false
         }
 
@@ -125,11 +125,11 @@ class RegisterActivity : AppCompatActivity() {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
         if (email.isEmpty()) {
-            findViewById<EditText>(R.id.et_email).error = "Email is required"
+            findViewById<EditText>(R.id.et_email).error = getString(R.string.email_required)
             return false
         }
         else if (!email.matches(emailPattern.toRegex())) {
-            findViewById<EditText>(R.id.et_email).error = "Invalid email address"
+            findViewById<EditText>(R.id.et_email).error = getString(R.string.invalid_email)
             return false
         }
 
@@ -137,14 +137,13 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkPassword(password: String):Boolean {
-        val minLength = 6
 
         if (password.isEmpty()) {
-            findViewById<EditText>(R.id.et_password).error = "Password is required"
+            findViewById<EditText>(R.id.et_password).error = getString(R.string.password_required)
             return false
         }
-        else if (password.length < minLength) {
-            findViewById<EditText>(R.id.et_password).error = "Password must be at least $minLength characters"
+        else if (password.length < 6) {
+            findViewById<EditText>(R.id.et_password).error = getString(R.string.password_min_length)
             return false
         }
 

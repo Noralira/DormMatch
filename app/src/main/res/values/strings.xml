@@ -46,4 +46,7 @@
     <string name="invalid_email">"Invalid email "</string>
     <string name="password_required">Password is required</string>
     <string name="password_min_length">The password must be at least 6 characters</string>
+    <string name="information">Information</string>
+    <string name="account_created">Account successfully created.</string>
+    <string name="username_required">Username is required</string>
 </resources>
