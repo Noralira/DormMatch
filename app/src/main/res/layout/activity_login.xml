@@ -48,6 +48,7 @@
         android:layout_below="@+id/tv_email"
         android:background="@drawable/rounded_edit_text"
         android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
         android:layout_centerHorizontal="true"/>
 
 
@@ -73,6 +74,7 @@
         android:paddingVertical="5dp"
         android:layout_centerHorizontal="true"
         android:radius="10dp"
+        android:paddingHorizontal="15dp"
         android:inputType="textPassword"/>
 
 
