@@ -10,7 +10,7 @@ import com.example.dormmatch.fragments.*
 class MenuActivity: AppCompatActivity() {
     private lateinit var binding: MenuBottomNavbarBinding
 
-    val user = intent.getStringExtra("user")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,10 @@ class MenuActivity: AppCompatActivity() {
                 else ->{}
             }
             true
+
         }
+
+        val user = intent.getStringExtra("user")
     }
 
     private fun replaceFragment(fragment: Fragment){
