@@ -114,6 +114,15 @@ class Maps : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         nMap = googleMap
 
+        nMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
+
+        for (i in 0 until idPropriedade.size) {
+            nMap.addMarker(
+                MarkerOptions().position(getCoord(localizacao[i])).title(imagem[i])
+                    .snippet(titulo[i] + "&_:_&" + descricao[i])
+            )
+        }
+
         // Check if GoogleMap is null or not
         nMap.let {
             nMap = it
@@ -134,15 +143,6 @@ class Maps : Fragment(), OnMapReadyCallback {
                     PERMISSIONS_REQUEST_LOCATION
                 )
             }
-        }
-
-        nMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
-
-        for (i in 0 until idPropriedade.size) {
-            nMap.addMarker(
-                MarkerOptions().position(getCoord(localizacao[i])).title(imagem[i])
-                    .snippet(titulo[i] + "&_:_&" + descricao[i])
-            )
         }
     }
 
@@ -222,6 +222,16 @@ class Maps : Fragment(), OnMapReadyCallback {
                 .addOnSuccessListener { location: Location? ->
                     location?.let {
                         lastLocation = it
+
+                        nMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
+
+
+                        for (i in 0 until idPropriedade.size) {
+                            nMap.addMarker(
+                                MarkerOptions().position(getCoord(localizacao[i])).title(imagem[i])
+                                    .snippet(titulo[i] + "&_:_&" + descricao[i])
+                            )
+                        }
 
                         // Add a marker to the current location with a different icon
                         val currentLatLng = LatLng(it.latitude, it.longitude)

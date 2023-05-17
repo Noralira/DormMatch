@@ -1,6 +1,7 @@
 package com.example.dormmatch.fragments
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.example.dormmatch.ProfileActivity
 import com.example.dormmatch.R
+import com.example.dormmatch.databinding.FragmentSettingsBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +26,8 @@ class Settings : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var binding: FragmentSettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +47,20 @@ class Settings : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        val btnProfile = view.findViewById<LinearLayout>(R.id.ll_2)
-        btnProfile.setOnClickListener{
+
+        binding = FragmentSettingsBinding.bind(view)
+
+        binding.ll2.setOnClickListener{
             val intent = Intent(context, ProfileActivity::class.java)
             startActivity(intent)
         }
+
+        binding.ll4.setOnClickListener {
+            val openURL = Intent(android.content.Intent.ACTION_VIEW)
+            openURL.data = Uri.parse("https://www.ipvc.pt/")
+            startActivity(openURL)
+        }
+
     }
 
     companion object {

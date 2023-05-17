@@ -113,7 +113,7 @@ class Home : Fragment() {
         }
     }
 
-      fun onStudentClickItem(position: Int) {
+      fun onPropClickItem(position: Int) {
         val idProp = propriedadeArrayList[position].idPropriedade
 
         val intent = Intent(context, ViewRoom::class.java)
