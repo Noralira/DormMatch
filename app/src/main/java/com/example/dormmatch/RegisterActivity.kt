@@ -2,6 +2,7 @@ package com.example.dormmatch
 
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -93,7 +94,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun btnReturn(view: View) {
-        //setContentView(R.layout.login_activity)
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 
     fun btnCreateAccount(view: View) {
