@@ -37,4 +37,7 @@
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
     <string name="email">Email</string>
+    <string name="perfil">Perfil</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="traducao">Tradução</string>
 </resources>

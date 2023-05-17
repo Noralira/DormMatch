@@ -36,13 +36,11 @@ class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, p
     }
 
     override fun onBindViewHolder(holder: AnnounceListViewHolder, position: Int) {
-        //val currentList = annouceL[position]
         val currentList = this.propriedadeList[position]
 
         holder.title.text = currentList.titulo
         holder.address.text = currentList.localizacao
         holder.rent.text = currentList.preco.toString() + " € / mês"
-        holder.rooms.text = currentList.nQuartos.toString() + " Quartos"
 
         // atraves do codigo do anuncio vou buscar uma imagem a BD
         val ref = FirebaseDatabase.getInstance().getReference("foto")
@@ -69,6 +67,31 @@ class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, p
 
             }
         })
+
+        // atraves do codigo da categoria vou buscar o nome da categoria a BD
+        val refCat = FirebaseDatabase.getInstance().getReference("categorias")
+        refCat.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    var conta = 0
+                    for (anuncioSnap in snapshot.children) {
+                        val idC = "${anuncioSnap.child("id_categoria").value}"
+                        if (idC.equals(currentList.id_categoria)) {
+                            val name = "${anuncioSnap.child("descricao").value}"
+                            holder.cat.text = name
+                            conta += 1
+                        }
+                    }
+                    if (conta == 0) {
+                        holder.cat.text = ""
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
         holder.itemView.setOnClickListener {
             onAnnouceClickListenner.onStudentClickItem(position)
         }
@@ -79,7 +102,7 @@ class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, p
         val title: TextView = itemView.findViewById(R.id.title)
         val address: TextView = itemView.findViewById(R.id.address)
         val rent: TextView = itemView.findViewById(R.id.price)
-        val rooms: TextView = itemView.findViewById(R.id.roooms)
+        val cat: TextView = itemView.findViewById(R.id.categoria)
         val foto: ImageView = itemView.findViewById(R.id.imagemA)
 
     }

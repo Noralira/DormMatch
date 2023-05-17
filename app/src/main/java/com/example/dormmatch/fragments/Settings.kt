@@ -1,10 +1,13 @@
 package com.example.dormmatch.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import com.example.dormmatch.ProfileActivity
 import com.example.dormmatch.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +39,16 @@ class Settings : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        val btnProfile = view.findViewById<LinearLayout>(R.id.ll_2)
+        btnProfile.setOnClickListener{
+            val intent = Intent(context, ProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {
