@@ -31,4 +31,9 @@
     <string name="contacto">Contacto:</string>
     <string name="ar_condicionado">Ar Condicionado</string>
     <string name="galeria">Galeria</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
 </resources>
