@@ -6,15 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dormmatch.ProfileActivity
 import com.example.dormmatch.R
 import com.example.dormmatch.ViewRoom
 import com.example.dormmatch.adapters.propriedadeAdapter
 import com.example.dormmatch.models.propriedade.Propriedade
 import com.example.dormmatch.models.propriedade.propriedadeViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,6 +41,8 @@ class Home : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +85,8 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+
         propriedadeArrayList = arrayListOf<Propriedade>()
 
         propriedadeRecyclerView = view.findViewById(R.id.recView)
@@ -94,6 +102,15 @@ class Home : Fragment() {
             adapter.updatePropriedadeList(it)
 
         })
+
+        val textWelcome = view.findViewById<TextView>(R.id.welcome)
+        textWelcome.text =  "Welcome, " +  firebaseAuth.currentUser?.displayName.toString() + "!"
+
+        val btnPorfile = view.findViewById<Button>(R.id.btProfile)
+        btnPorfile.setOnClickListener{
+            val intent = Intent(context, ProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 
       fun onStudentClickItem(position: Int) {

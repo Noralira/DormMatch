@@ -13,7 +13,6 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 
@@ -30,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
         FirebaseApp.initializeApp(this)
 

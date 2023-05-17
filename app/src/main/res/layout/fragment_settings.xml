@@ -9,109 +9,129 @@
     <LinearLayout
         android:id="@+id/ll_1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginBottom="2dp"
-        android:paddingVertical="60dp">
-
-
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:paddingTop="60dp">
         <TextView
             android:id="@+id/perf"
             android:layout_width="wrap_content"
-            android:layout_height="39dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="-5dp"
-            android:text="Configurações"
+            android:layout_height="wrap_content"
+            android:text="@string/configuracoes"
             android:textColor="@color/blue"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_1"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/component_9" />
+
+        <TextView
+            android:id="@+id/perfs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perfil"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="25dp"/>
+
+        <ImageButton
+            android:layout_weight="1"
+            android:id="@+id/myButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            android:src="@drawable/_icon__chevron_down_" />
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="41dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="50dp"
-        android:src="@drawable/component_9" />
 
-    <TextView
-        android:id="@+id/perfs"
-        android:layout_width="194dp"
+    <LinearLayout
+        android:id="@+id/ll_3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="155dp"
-        android:text="Perfil"
-        android:textColor="@color/blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:layout_below="@id/ll_2"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="41dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="230dp"
-        android:layout_marginLeft="50dp"
-        android:src="@drawable/_icon__location_" />
+        <ImageView
+            android:layout_width="41dp"
+            android:layout_height="40dp"
+            android:src="@drawable/_icon__location_" />
 
-    <TextView
-        android:id="@+id/trad"
-        android:layout_width="194dp"
+        <TextView
+            android:id="@+id/trad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/traducao"
+            android:textColor="@color/blue"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_marginStart="25dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            android:src="@drawable/_icon__chevron_down_" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="235dp"
-        android:text="Tradução"
-        android:textColor="@color/blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:layout_below="@id/ll_3"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="41dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="310dp"
-        android:layout_marginLeft="50dp"
-        android:src="@drawable/_icon__lock_" />
+        <ImageView
+            android:layout_width="41dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/_icon__lock_" />
 
-    <TextView
-        android:id="@+id/lock"
-        android:layout_width="194dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="310dp"
-        android:text="Privacidade e Partilha"
-        android:textColor="@color/blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacidade e \n Partilha"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_marginStart="25dp"
+            android:layout_gravity="center_vertical"/>
 
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            android:src="@drawable/_icon__chevron_down_" />
 
-
-
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="325dp"
-        android:src="@drawable/_icon__chevron_down_" />
-
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="240dp"
-        android:src="@drawable/_icon__chevron_down_" />
-
-    <ImageButton
-        android:id="@+id/myButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="155dp"
-        android:background="@android:color/transparent"
-        android:padding="8dp"
-        android:src="@drawable/_icon__chevron_down_" />
-
-
+    </LinearLayout>
 
 </RelativeLayout>
