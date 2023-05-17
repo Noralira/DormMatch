@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dormmatch.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -46,7 +47,26 @@ class RegisterActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
-                    updateUI(user)
+
+                    val username = findViewById<EditText>(R.id.et_username).text.toString()
+
+                    val userProfileChangeRequest = UserProfileChangeRequest.Builder()
+                        .setDisplayName(username)
+                        .build()
+
+                    user?.updateProfile(userProfileChangeRequest)
+                        ?.addOnCompleteListener { updateTask ->
+                            if (updateTask.isSuccessful) {
+                                // Additional user information updated successfully
+                                // Proceed with the rest of your application logic
+
+                                //goes to login menu
+                                updateUI(user)
+                            } else {
+                                // Failed to update additional user information
+                            }
+                        }
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -62,6 +82,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
+
     }
 
     private fun reload() {
