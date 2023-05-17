@@ -32,15 +32,28 @@ class ViewRoom : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ViewRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val idPropriedade = intent.getStringExtra("idPropriedade")
 
         firebaseAuth = FirebaseAuth.getInstance()
+        if (firebaseAuth.currentUser != null) {
+            checkFav(idPropriedade!!)
+        }
 
         viewFlipperCapa = binding.imagemA
 
-        val idPropriedade = intent.getStringExtra("idPropriedade")
-
         carregaImgCapa(idPropriedade!!)
         loadAnuncio(idPropriedade)
+
+        //Favoritos
+        binding.favBtn.setOnClickListener {
+            if (isInMyFavorite) {
+                //remove
+                removeFromFav(idPropriedade)
+            } else {
+                //adiciona
+                addFavorite(idPropriedade)
+            }
+        }
 
         binding.backBtn.setOnClickListener {
             onBackPressed()
@@ -82,22 +95,22 @@ class ViewRoom : AppCompatActivity() {
                     binding.description.text = descricao
                     binding.contacto.text = telemovel
 
-                    if (arCondicionado.toString().equals("true")) {
+                    if (arCondicionado.equals("true")) {
                         binding.LlArCondicionado.visibility = View.VISIBLE
                     } else {
                         binding.LlArCondicionado.visibility = View.GONE
                     }
-                    if (wifi.toString().equals("true")) {
+                    if (wifi.equals("true")) {
                         binding.LlWifi.visibility = View.VISIBLE
                     } else {
                         binding.LlWifi.visibility = View.GONE
                     }
-                    if (mobilia.toString().equals("true")) {
+                    if (mobilia.equals("true")) {
                         binding.LlMobilia.visibility = View.VISIBLE
                     } else {
                         binding.LlMobilia.visibility = View.GONE
                     }
-                    if (maquilaLavar.toString().equals("true")) {
+                    if (maquilaLavar.equals("true")) {
                         binding.LlMaquinaLavar.visibility = View.VISIBLE
                     } else {
                         binding.LlMaquinaLavar.visibility = View.GONE
@@ -155,19 +168,14 @@ class ViewRoom : AppCompatActivity() {
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     isInMyFavorite = snapshot.exists()
-
                     if (isInMyFavorite) {
                         //já existia
                         binding.favBtn.setImageResource(R.drawable.baseline_favorite_24)
-                        binding.favBtn.setColorFilter(R.color.fav)
                     } else {
                         binding.favBtn.setImageResource(R.drawable.baseline_favorite_border_24)
-                        binding.favBtn.setColorFilter(R.color.fav)
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
-
                 }
 
             })
@@ -190,7 +198,6 @@ class ViewRoom : AppCompatActivity() {
     }
 
     private fun removeFromFav(idPropriedade: String) {
-
         val rel = FirebaseDatabase.getInstance().getReference("user")
         rel.child(firebaseAuth.uid!!).child("Favoritos").child(idPropriedade)
             .removeValue()

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.R
-import com.example.dormmatch.fragments.Home
+import com.example.dormmatch.fragments.Favourite
 import com.example.dormmatch.models.propriedade.Propriedade
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -15,27 +15,21 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
-class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, private val onAnnouceClickListenner: Home):  RecyclerView.Adapter<propriedadeAdapter.AnnounceListViewHolder>() {
+class favouritePropriedadeAdapter(private val propriedadeList: ArrayList<Propriedade>, private val onAnnouceClickListenner: Favourite):  RecyclerView.Adapter<favouritePropriedadeAdapter.FavPropListViewHolder>()  {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnnounceListViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.announce_line,
-            parent,false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavPropListViewHolder {
+        return FavPropListViewHolder(
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.announce_line, parent, false)
         )
-        return AnnounceListViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        return this.propriedadeList.size
+        return propriedadeList.size
     }
 
-    fun updatePropriedadeList(proplist: List<Propriedade>){
-        this.propriedadeList.clear()
-        this.propriedadeList.addAll(proplist)
-        notifyDataSetChanged()
-    }
-
-    override fun onBindViewHolder(holder: AnnounceListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavPropListViewHolder, position: Int) {
         val currentList = this.propriedadeList[position]
 
         holder.title.text = currentList.titulo
@@ -93,11 +87,22 @@ class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, p
             }
         })
         holder.itemView.setOnClickListener {
-            onAnnouceClickListenner.onPropClickItem(position)
+            onAnnouceClickListenner.onPropClickFav(currentList.idPropriedade.toString())
         }
 
     }
-    class AnnounceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    fun addTodo(sl: Propriedade) {
+        propriedadeList.add(sl)
+        notifyDataSetChanged()
+    }
+
+    fun rmAll() {
+        propriedadeList.clear()
+        notifyDataSetChanged()
+    }
+
+    class FavPropListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val title: TextView = itemView.findViewById(R.id.title)
         val address: TextView = itemView.findViewById(R.id.address)
@@ -107,3 +112,5 @@ class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, p
 
     }
 }
+
+
