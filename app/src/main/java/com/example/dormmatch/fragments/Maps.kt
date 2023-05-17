@@ -1,31 +1,32 @@
 package com.example.dormmatch.fragments
 
-import android.content.ContentValues.TAG
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.dormmatch.R
 import com.example.dormmatch.adapters.MyInfoWindowAdapter
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,9 +51,8 @@ class Maps : Fragment(), OnMapReadyCallback {
     private lateinit var idPropriedade: ArrayList<String>
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationCallback: LocationCallback
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var lastLocation: Location
+    private lateinit var locationManager: LocationManager
+    private var lastLocation: Location? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -60,24 +60,6 @@ class Maps : Fragment(), OnMapReadyCallback {
             param2 = it.getString(ARG_PARAM2)
         }
         loadStreets()
-        createLocationRequest()
-
-        // initialize fusedLocationClient
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(p0: LocationResult) {
-                super.onLocationResult(p0)
-                lastLocation = p0.lastLocation!!
-                val loc = LatLng(lastLocation.latitude, lastLocation.longitude)
-                nMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                    loc,
-                    17.0f
-                ))
-                Log.d("**** TAG", "new location received - " + loc.latitude + " -" + loc.longitude)
-
-            }
-        }
     }
 
     override fun onCreateView(
@@ -89,13 +71,21 @@ class Maps : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+
         localizacao = arrayListOf()
         descricao = arrayListOf()
         imagem = arrayListOf()
         titulo = arrayListOf()
         idPropriedade = arrayListOf()
+
+        // Initialize the FusedLocationProviderClient and LocationManager
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
     }
 
@@ -117,19 +107,36 @@ class Maps : Fragment(), OnMapReadyCallback {
                     putString(ARG_PARAM2, param2)
                 }
             }
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val PERMISSIONS_REQUEST_LOCATION = 100
+        private const val DEFAULT_ZOOM = 17f
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         nMap = googleMap
-        val address = "Avenida do Atlântico Viana do Castelo"
+
+        // Check if GoogleMap is null or not
+        nMap.let {
+            nMap = it
+
+            // Check if the app has location permission
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                googleMap.isMyLocationEnabled = true
+                // Get the current location and add a marker
+                getCurrentLocation()
+            } else {
+                // Request location permission if it is not granted
+                requestPermissions(
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    PERMISSIONS_REQUEST_LOCATION
+                )
+            }
+        }
 
         nMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
-
-        // ZOOM AND MOVE CAMERA NA LOCALIZAÇÃO ATUAL
-        //this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(getCoord(address)))
-        //this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoord(address), 18.0f))
-
 
         for (i in 0 until idPropriedade.size) {
             nMap.addMarker(
@@ -137,10 +144,9 @@ class Maps : Fragment(), OnMapReadyCallback {
                     .snippet(titulo[i] + "&_:_&" + descricao[i])
             )
         }
-        setUpMap()
     }
 
-    fun getCoord(address: String): LatLng {
+    private fun getCoord(address: String): LatLng {
         val geocoder = Geocoder(requireContext())
         val list = geocoder.getFromLocationName(address, 1)
         val lat = list?.get(0)?.latitude
@@ -149,7 +155,7 @@ class Maps : Fragment(), OnMapReadyCallback {
         return LatLng(lat!!, lng!!)
     }
 
-    fun loadStreets() {
+    private fun loadStreets() {
         val ref = FirebaseDatabase.getInstance().getReference("propriedade")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -176,47 +182,88 @@ class Maps : Fragment(), OnMapReadyCallback {
         })
     }
 
-    fun setUpMap() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
-            return
+    @Deprecated("Deprecated in Java")
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == PERMISSIONS_REQUEST_LOCATION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                nMap.isMyLocationEnabled = true
+                // Get the current location
+                getCurrentLocation()
+            } else {
+                // Permission is not granted, display a message and redirect the user to app settings
+                locationPermissionDenied()
+            }
         }
     }
 
-    private fun createLocationRequest() {
-        locationRequest = LocationRequest()
-        // interval specifies the rate at which your app will like to receive updates.
-        locationRequest.interval = 1000
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+    override fun onResume() {
+        super.onResume()
+        getCurrentLocation()
     }
 
     override fun onPause() {
         super.onPause()
-        fusedLocationClient.removeLocationUpdates(locationCallback)
-        Log.d("**** TAG", "onPause - removeLocationUpdates")
-    }
-     public override fun onResume() {
-        super.onResume()
-        startLocationUpdates()
-        Log.d("**** TAG", "onResume - startLocationUpdates")
+        nMap.clear()
     }
 
-    private fun startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(requireContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE)
-            return
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocation() {
+        // Check if location services are enabled on the device
+        if (isLocationEnabled()) {
+            // Get the current location of the user
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    location?.let {
+                        lastLocation = it
+
+                        // Add a marker to the current location with a different icon
+                        val currentLatLng = LatLng(it.latitude, it.longitude)
+                        nMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, DEFAULT_ZOOM))
+                    }
+                }
+        } else {
+            // Location services are not enabled, display a message and redirect the user to location settings
+            locationServicesDisabled()
         }
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
     }
+
+    @SuppressLint("ObsoleteSdkInt")
+    private fun isLocationEnabled(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            locationManager.isLocationEnabled
+        } else {
+            val mode: Int = try {
+                Settings.Secure.getInt(
+                    requireActivity().contentResolver,
+                    Settings.Secure.LOCATION_MODE
+                )
+            } catch (e: Settings.SettingNotFoundException) {
+                e.printStackTrace()
+                return false
+            }
+            mode != Settings.Secure.LOCATION_MODE_OFF
+        }
+    }
+
+    private fun locationServicesDisabled() {
+        // Display a message and redirect the user to location settings
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        startActivity(intent)
+    }
+
+    private fun locationPermissionDenied() {
+        // Display a message and redirect the user to app settings
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", requireActivity().packageName, null)
+        intent.data = uri
+        startActivity(intent)
+    }
+
 }
