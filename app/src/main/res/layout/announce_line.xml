@@ -45,11 +45,11 @@
                 android:text="Avenida do Altantico nº123 1234-567 - Viana do Castelo" />
 
             <TextView
-                android:id="@+id/roooms"
+                android:id="@+id/categoria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="4 Quartos" />
+                android:text="Categoria" />
 
             <TextView
                 android:id="@+id/price"
