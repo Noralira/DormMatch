@@ -27,8 +27,6 @@ class MyInfoWindowAdapter(private val context: Context): InfoWindowAdapter {
         val desc: TextView = infoView.findViewById(R.id.description_info)
         val imageView: ImageView = infoView.findViewById(R.id.imagemA_info)
 
-        val URLimage = "https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/featured-image-bedroom-decor.jpeg.jpg"
-
         val delim = "&_:_&"
         val arraySnippet = p0.snippet.toString().split(delim).toTypedArray()
         title.setText(arraySnippet[0])

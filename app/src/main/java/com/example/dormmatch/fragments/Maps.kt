@@ -1,15 +1,21 @@
 package com.example.dormmatch.fragments
 
 import android.content.ContentValues.TAG
+import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.dormmatch.R
 import com.example.dormmatch.adapters.MyInfoWindowAdapter
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -36,13 +42,17 @@ class Maps : Fragment(), OnMapReadyCallback {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var googleMap: GoogleMap
+    private lateinit var nMap: GoogleMap
     private lateinit var localizacao: ArrayList<String>
     private lateinit var descricao: ArrayList<String>
     private lateinit var imagem: ArrayList<String>
     private lateinit var titulo: ArrayList<String>
     private lateinit var idPropriedade: ArrayList<String>
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationCallback: LocationCallback
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var lastLocation: Location
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -50,35 +60,30 @@ class Maps : Fragment(), OnMapReadyCallback {
             param2 = it.getString(ARG_PARAM2)
         }
         loadStreets()
+        createLocationRequest()
+
+        // initialize fusedLocationClient
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(p0: LocationResult) {
+                super.onLocationResult(p0)
+                lastLocation = p0.lastLocation!!
+                val loc = LatLng(lastLocation.latitude, lastLocation.longitude)
+                nMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                    loc,
+                    17.0f
+                ))
+                Log.d("**** TAG", "new location received - " + loc.latitude + " -" + loc.longitude)
+
+            }
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Initialize map fragment
-        /*val supportMapFragment =
-            childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment?
-
-        // Async map
-        supportMapFragment!!.getMapAsync { googleMap ->
-            // When map is loaded
-            googleMap.setOnMapClickListener { latLng -> // When clicked on map
-                // Initialize marker options
-                val markerOptions = MarkerOptions().position(LatLng(0.0, 0.0))
-                // Set position of marker
-                //markerOptions.position(latLng)
-                // Set title of marker
-                markerOptions.title(latLng.latitude.toString() + " : " + latLng.longitude.toString())
-                // Remove all marker
-                googleMap.clear()
-                // Animating to zoom the marker
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
-                // Add marker on map
-                googleMap.addMarker(markerOptions)
-            }
-        }*/
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
@@ -91,6 +96,7 @@ class Maps : Fragment(), OnMapReadyCallback {
         imagem = arrayListOf()
         titulo = arrayListOf()
         idPropriedade = arrayListOf()
+
     }
 
     companion object {
@@ -111,27 +117,30 @@ class Maps : Fragment(), OnMapReadyCallback {
                     putString(ARG_PARAM2, param2)
                 }
             }
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
-    override fun onMapReady(googleMap: GoogleMap){
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in sydney"))
-
+    override fun onMapReady(googleMap: GoogleMap) {
+        nMap = googleMap
         val address = "Avenida do Atlântico Viana do Castelo"
 
-        googleMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
+        nMap.setInfoWindowAdapter(MyInfoWindowAdapter(requireContext()))
 
         // ZOOM AND MOVE CAMERA NA LOCALIZAÇÃO ATUAL
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(getCoord(address)))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoord(address), 18.0f))
+        //this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(getCoord(address)))
+        //this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoord(address), 18.0f))
+
 
         for (i in 0 until idPropriedade.size) {
-                googleMap.addMarker(MarkerOptions().position(getCoord(localizacao[i])).title(imagem[i]).snippet(titulo[i] + "&_:_&" + descricao[i]))
+            nMap.addMarker(
+                MarkerOptions().position(getCoord(localizacao[i])).title(imagem[i])
+                    .snippet(titulo[i] + "&_:_&" + descricao[i])
+            )
         }
-
+        setUpMap()
     }
 
-    fun getCoord(address: String): LatLng{
+    fun getCoord(address: String): LatLng {
         val geocoder = Geocoder(requireContext())
         val list = geocoder.getFromLocationName(address, 1)
         val lat = list?.get(0)?.latitude
@@ -140,30 +149,74 @@ class Maps : Fragment(), OnMapReadyCallback {
         return LatLng(lat!!, lng!!)
     }
 
-    fun loadStreets(){
+    fun loadStreets() {
         val ref = FirebaseDatabase.getInstance().getReference("propriedade")
         ref.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()){
-                        for(snap in snapshot.children){
-                            val loc = "${snap.child("localizacao").value}"
-                            val idP = "${snap.child("idPropriedade").value}"
-                            val desc = "${snap.child("descricao").value}"
-                            val title = "${snap.child("titulo").value}"
-                            val Image = "${snap.child("imagemCapa").value}"
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (snap in snapshot.children) {
+                        val loc = "${snap.child("localizacao").value}"
+                        val idP = "${snap.child("idPropriedade").value}"
+                        val desc = "${snap.child("descricao").value}"
+                        val title = "${snap.child("titulo").value}"
+                        val Image = "${snap.child("imagemCapa").value}"
 
-                            localizacao.add(loc)
-                            descricao.add(desc)
-                            titulo.add(title)
-                            idPropriedade.add(idP)
-                            imagem.add(Image)
-                        }
+                        localizacao.add(loc)
+                        descricao.add(desc)
+                        titulo.add(title)
+                        idPropriedade.add(idP)
+                        imagem.add(Image)
                     }
                 }
+            }
 
-                override fun onCancelled(error: DatabaseError) {
+            override fun onCancelled(error: DatabaseError) {
 
-                }
-            })
+            }
+        })
+    }
+
+    fun setUpMap() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+            return
+        }
+    }
+
+    private fun createLocationRequest() {
+        locationRequest = LocationRequest()
+        // interval specifies the rate at which your app will like to receive updates.
+        locationRequest.interval = 1000
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+    }
+
+    override fun onPause() {
+        super.onPause()
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+        Log.d("**** TAG", "onPause - removeLocationUpdates")
+    }
+     public override fun onResume() {
+        super.onResume()
+        startLocationUpdates()
+        Log.d("**** TAG", "onResume - startLocationUpdates")
+    }
+
+    private fun startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(),
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE)
+            return
+        }
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
     }
 }
