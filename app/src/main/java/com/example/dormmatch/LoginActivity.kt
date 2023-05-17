@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.example.dormmatch.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
@@ -47,13 +48,22 @@ class LoginActivity : AppCompatActivity() {
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                    updateUI(null)
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        val exception = task.exception as FirebaseAuthInvalidCredentialsException
+                        val errorCode = exception.errorCode
+
+                        if (errorCode == "ERROR_WRONG_PASSWORD") {
+                            // Wrong password
+                            Toast.makeText(this, "Wrong password", Toast.LENGTH_SHORT).show()
+                        }
+                        if(errorCode == "ERROR_USER_NOT_FOUND") {
+                            Toast.makeText(this, "Wrong Email", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        // Other sign-in errors
+                        // Handle other sign-in errors
+                    }
                 }
             }
     }
