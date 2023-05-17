@@ -60,9 +60,14 @@ class LoginActivity : AppCompatActivity() {
 
     fun btnLogin(view: View) {
         val email = findViewById<EditText>(R.id.et_email).text.toString();
-        val password = findViewById<EditText>(R.id.et_password).text.toString();
+        val password = findViewById<EditText>(R.id.et_password).text.toString().trim();
 
-        signIn(email, password)
+        var emailIsCorrect: Boolean = checkEmail(email)
+        var passwordIsCorrect:Boolean = checkPassword(password)
+
+        if(emailIsCorrect && passwordIsCorrect) {
+            signIn(email, password)
+        }
     }
     fun btnRegister(view: View) {
         val intent = Intent(this, RegisterActivity::class.java)
@@ -73,5 +78,37 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, MenuActivity::class.java)
         intent.putExtra("user", user)
         startActivity(intent)
+    }
+
+
+    private fun checkEmail(email: String):Boolean {
+
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+
+        if (email.isEmpty()) {
+            findViewById<EditText>(R.id.et_email).error = "Email is required"
+            return false
+        }
+        else if (!email.matches(emailPattern.toRegex())) {
+            findViewById<EditText>(R.id.et_email).error = "Invalid email address"
+            return false
+        }
+
+        return true
+    }
+
+    private fun checkPassword(password: String):Boolean {
+        val minLength = 6
+
+        if (password.isEmpty()) {
+            findViewById<EditText>(R.id.et_password).error = "Password is required"
+            return false
+        }
+        else if (password.length < minLength) {
+            findViewById<EditText>(R.id.et_password).error = "Password must be at least $minLength characters"
+            return false
+        }
+
+        return true
     }
 }
