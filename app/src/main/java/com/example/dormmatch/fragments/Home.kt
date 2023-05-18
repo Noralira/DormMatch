@@ -116,7 +116,7 @@ class Home : Fragment() {
 
 
         val textWelcome = view.findViewById<TextView>(R.id.welcome)
-        textWelcome.text = "Welcome, " + firebaseAuth.currentUser?.displayName.toString() + "!"
+        textWelcome.text = "Olá, " + firebaseAuth.currentUser?.displayName.toString() + "!"
 
         val logoutButton = view.findViewById<Button>(R.id.logout)
         logoutButton.setOnClickListener {

@@ -17,6 +17,31 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="@color/blue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@id/title"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"/>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_email"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_edit_text"
+        android:inputType="textEmailAddress"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:radius="10dp" />
+
+
+    <TextView
         android:id="@+id/tv_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +49,7 @@
         android:textColor="@color/blue"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/et_email"
         android:paddingHorizontal="50dp"
         android:paddingVertical="10dp"
         android:onClick="btnCreateAccount" />
@@ -65,36 +90,13 @@
         android:radius="10dp"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/tv_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textColor="@color/blue"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:layout_below="@id/et_password"
-        android:paddingHorizontal="50dp"
-        android:paddingVertical="10dp"/>
-
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_email"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_edit_text"
-        android:inputType="textEmailAddress"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="15dp"
-        android:radius="10dp" />
 
 
     <Button
         android:id="@+id/btn_create_account"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_email"
+        android:layout_below="@+id/et_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="147dp"
         android:background="@drawable/rounded_button"
