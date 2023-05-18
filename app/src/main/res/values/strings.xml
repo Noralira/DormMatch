@@ -50,4 +50,5 @@
     <string name="account_created">Account successfully created.</string>
     <string name="username_required">Username is required</string>
     <string name="favoritos">Favoritos</string>
+    <string name="authentication_failed">Authentication failed.</string>
 </resources>
