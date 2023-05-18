@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -148,6 +149,14 @@ class Home : Fragment() {
 
             loadListFilter(category)
         }
+
+        val btnSearch = view.findViewById<Button>(R.id.btnSearch)
+        btnSearch.setOnClickListener {
+            val searchtxt = view.findViewById<EditText>(R.id.search)
+            val titulo = searchtxt.text // Categoria desejada
+
+            loadListSearch(titulo.toString())
+        }
     }
       fun onPropClickItem(position: Int) {
         val idProp = propriedadeArrayList[position].idPropriedade
@@ -185,6 +194,51 @@ class Home : Fragment() {
                                                         adapter.addTodo(propriedade)
                                                     }
                                                 }
+
+                                    }
+
+                                }
+                                override fun onCancelled(error: DatabaseError) {
+                                }
+                            })
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+    }
+
+
+    fun loadListSearch(titulo: String){
+        val idProp = ArrayList<String>()
+
+        val ref = FirebaseDatabase.getInstance().getReference("propriedade")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    adapter.rmAll()
+                    if (snapshot.exists()) {
+                        for (anuncioSnap in snapshot.children) {
+                            val idP = "${anuncioSnap.child("idPropriedade").value}"
+                            idProp.add(idP)
+                        }
+                    }
+                    for (id in idProp) {
+                        val refProp = FirebaseDatabase.getInstance().getReference("propriedade")
+                        refProp.child(id)
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if(snapshot.exists()){
+                                        val title= "${snapshot.child("titulo").value}"
+
+                                        if(title.equals(titulo)){
+
+                                            val propriedade = snapshot.getValue(Propriedade::class.java)
+                                            if(propriedade!=null) {
+                                                adapter.addTodo(propriedade)
+                                            }
+                                        }
 
                                     }
 
