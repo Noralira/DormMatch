@@ -36,4 +36,5 @@
     <string name="information">Informação</string>
     <string name="account_created">Conta criada com sucesso.</string>
     <string name="username_required">O nome de utilizador é obrigatório</string>
+    <string name="authentication_failed">Autenticação falhou.</string>
 </resources>

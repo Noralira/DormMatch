@@ -12,6 +12,7 @@ import com.example.dormmatch.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -55,13 +56,13 @@ class LoginActivity : AppCompatActivity() {
                             // Wrong password
                             Toast.makeText(this, R.string.wrong_password, Toast.LENGTH_SHORT).show()
                         }
-                        if(errorCode == "ERROR_USER_NOT_FOUND") {
-                            Toast.makeText(this, R.string.wrong_email, Toast.LENGTH_SHORT).show()
-                        }
-
-                    } else {
-                        // Other sign-in errors
-                        // Handle other sign-in errors
+                    }
+                    else {
+                        Toast.makeText(
+                            baseContext,
+                            R.string.authentication_failed,
+                            Toast.LENGTH_SHORT,
+                        ).show()
                     }
                 }
             }
