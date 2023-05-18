@@ -2,23 +2,32 @@ package com.example.dormmatch.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.ProfileActivity
 import com.example.dormmatch.R
 import com.example.dormmatch.ViewRoom
+import com.example.dormmatch.adapters.favouritePropriedadeAdapter
 import com.example.dormmatch.adapters.propriedadeAdapter
 import com.example.dormmatch.models.propriedade.Propriedade
 import com.example.dormmatch.models.propriedade.propriedadeViewModel
+import com.example.dormmatch.repository.propriedadeRepository
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,6 +52,7 @@ class Home : Fragment() {
     private var param2: String? = null
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var idCategoria: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +95,8 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        idCategoria = arrayListOf()
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         propriedadeArrayList = arrayListOf<Propriedade>()
@@ -96,23 +108,47 @@ class Home : Fragment() {
         propriedadeRecyclerView.adapter = adapter
 
         viewModel = ViewModelProvider(this).get(propriedadeViewModel::class.java)
-
         viewModel.allPropriedade.observe(viewLifecycleOwner, Observer {
-
             adapter.updatePropriedadeList(it)
-
         })
 
+
         val textWelcome = view.findViewById<TextView>(R.id.welcome)
-        textWelcome.text =  "Welcome, " +  firebaseAuth.currentUser?.displayName.toString() + "!"
+        textWelcome.text = "Welcome, " + firebaseAuth.currentUser?.displayName.toString() + "!"
 
         val btnPorfile = view.findViewById<Button>(R.id.btProfile)
-        btnPorfile.setOnClickListener{
+        btnPorfile.setOnClickListener {
             val intent = Intent(context, ProfileActivity::class.java)
             startActivity(intent)
         }
-    }
 
+        val btnHouse = view.findViewById<Button>(R.id.btnHouse)
+        btnHouse.setOnClickListener {
+            val category = 1 // Categoria desejada
+
+            loadListFilter(category)
+        }
+
+        val btnRoom = view.findViewById<Button>(R.id.btnRoom)
+        btnRoom.setOnClickListener {
+            val category = 3 // Categoria desejada
+
+            loadListFilter(category)
+        }
+        val btnApart = view.findViewById<Button>(R.id.btnApart)
+        btnApart.setOnClickListener {
+            val category = 0 // Categoria desejada
+
+            loadListFilter(category)
+        }
+
+        val btnOthers = view.findViewById<Button>(R.id.btnOthers)
+        btnOthers.setOnClickListener {
+            val category = 2 // Categoria desejada
+
+            loadListFilter(category)
+        }
+    }
       fun onPropClickItem(position: Int) {
         val idProp = propriedadeArrayList[position].idPropriedade
 
@@ -121,4 +157,47 @@ class Home : Fragment() {
         startActivity(intent)
     }
 
+    fun loadListFilter(categoryID: Int){
+        val idProp = ArrayList<String>()
+
+        val ref = FirebaseDatabase.getInstance().getReference("propriedade")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    adapter.rmAll()
+                    if (snapshot.exists()) {
+                        for (anuncioSnap in snapshot.children) {
+                            val idP = "${anuncioSnap.child("idPropriedade").value}"
+                            idProp.add(idP)
+                        }
+                    }
+                    for (id in idProp) {
+                        val refProp = FirebaseDatabase.getInstance().getReference("propriedade")
+                                refProp.child(id)
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if(snapshot.exists()){
+                                            val idCat = "${snapshot.child("id_categoria").value}"
+
+                                                if(idCat.equals(categoryID.toString())){
+
+                                                    val propriedade = snapshot.getValue(Propriedade::class.java)
+                                                    if(propriedade!=null) {
+                                                        adapter.addTodo(propriedade)
+                                                    }
+                                                }
+
+                                    }
+
+                                }
+                                override fun onCancelled(error: DatabaseError) {
+                                }
+                            })
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+    }
 }

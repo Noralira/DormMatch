@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.R
+
 import com.example.dormmatch.fragments.Home
 import com.example.dormmatch.models.propriedade.Propriedade
 import com.google.firebase.database.DataSnapshot
@@ -95,8 +96,17 @@ class propriedadeAdapter( private val propriedadeList: ArrayList<Propriedade>, p
         holder.itemView.setOnClickListener {
             onAnnouceClickListenner.onPropClickItem(position)
         }
-
     }
+    fun addTodo(sl: Propriedade) {
+        propriedadeList.add(sl)
+        notifyDataSetChanged()
+    }
+
+    fun rmAll() {
+        propriedadeList.clear()
+        notifyDataSetChanged()
+    }
+
     class AnnounceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val title: TextView = itemView.findViewById(R.id.title)
