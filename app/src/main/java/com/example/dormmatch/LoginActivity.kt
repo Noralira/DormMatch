@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
 
+
     }
 
     private fun signIn(email: String, password: String) {
@@ -120,4 +121,8 @@ class LoginActivity : AppCompatActivity() {
 
         return true
     }
+
+
+
+
 }

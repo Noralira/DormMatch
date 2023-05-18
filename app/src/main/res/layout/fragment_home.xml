@@ -23,19 +23,18 @@
             android:textColor="@color/primaryColor"
             android:textSize="20sp"
             android:textStyle="bold" />
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btProfile"
+            android:id="@+id/logout"
+            android:onClick="logout"
             android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/blue"
             android:gravity="center"
             app:cornerRadius="10dp"
-            app:icon="@drawable/baseline_person_24"
+            app:icon="@drawable/baseline_logout_24"
             app:iconGravity="textStart"
             app:iconPadding="0dp" />
-
     </LinearLayout>
 
     <ScrollView

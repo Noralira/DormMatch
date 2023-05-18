@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dormmatch.LoginActivity
 import com.example.dormmatch.ProfileActivity
 import com.example.dormmatch.R
 import com.example.dormmatch.ViewRoom
@@ -117,11 +118,14 @@ class Home : Fragment() {
         val textWelcome = view.findViewById<TextView>(R.id.welcome)
         textWelcome.text = "Welcome, " + firebaseAuth.currentUser?.displayName.toString() + "!"
 
-        val btnPorfile = view.findViewById<Button>(R.id.btProfile)
-        btnPorfile.setOnClickListener {
-            val intent = Intent(context, ProfileActivity::class.java)
+        val logoutButton = view.findViewById<Button>(R.id.logout)
+        logoutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
+
 
         val btnHouse = view.findViewById<Button>(R.id.btnHouse)
         btnHouse.setOnClickListener {
