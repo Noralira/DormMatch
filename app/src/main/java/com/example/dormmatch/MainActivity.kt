@@ -7,7 +7,7 @@ import android.view.View
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.criar_editar_anunciov2)
+        setContentView(R.layout.criar_editar_anuncio)
     }
 
 
