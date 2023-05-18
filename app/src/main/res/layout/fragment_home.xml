@@ -119,6 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:drawableTint="#FFFFFF"
                     android:backgroundTint="@color/blue"
                     android:textSize="12sp"
                     android:drawableTop="@drawable/baseline_apartment_24"

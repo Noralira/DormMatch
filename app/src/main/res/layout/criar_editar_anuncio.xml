@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+    android:layout_height="match_parent"
+    tools:context=".CreateRoomActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -101,10 +100,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_categoria"
-                android:background="@drawable/rounded_edit_text"
-                android:paddingVertical="5dp"
                 android:layout_marginVertical="5dp"
-                />
+                android:background="@drawable/rounded_edit_text"/>
 
             <TextView
                 android:id="@+id/tv_localizacao"
@@ -178,16 +175,18 @@
                 android:textSize="14dp"
                 android:layout_marginVertical="5dp"/>
 
-            <LinearLayout
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/ll_tipo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_tipo"
+                android:orientation="horizontal"
                 android:layout_marginVertical="5dp">
 
                 <RadioButton
+                    android:id="@+id/venda"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Venda"
                     android:textColor="@color/blue"
@@ -196,8 +195,9 @@
                     android:textSize="12dp" />
 
                 <RadioButton
+                    android:id="@+id/arrendamento"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Arrendamento"
                     android:textColor="@color/blue"
@@ -205,7 +205,7 @@
                     android:textStyle="bold"
                     android:textSize="12dp"/>
 
-            </LinearLayout>
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/tv_imagem"
@@ -219,24 +219,11 @@
                 android:layout_marginVertical="5dp"/>
 
             <Button
-                android:id="@+id/btn_camara"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_imagem"
-                android:layout_centerHorizontal="true"
-                android:layout_marginVertical="5dp"
-                android:drawableLeft="@drawable/baseline_camera_alt_24"
-                android:onClick="usarCamara"
-                android:text="Usar câmara"
-                android:visibility="visible"
-                android:drawableTint="@color/white" />
-
-            <Button
                 android:id="@+id/btn_ficheiros"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="Selecionar ficheiros"
-                android:layout_below="@id/btn_camara"
+                android:layout_below="@id/tv_imagem"
                 android:layout_centerHorizontal="true"
                 android:layout_marginVertical="5dp"
                 android:onClick="selecionarFicheiros"
@@ -262,7 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_caracteristicas"
-                android:paddingHorizontal="60dp"
+                android:paddingHorizontal="50dp"
                 android:layout_marginVertical="5dp">
 
                 <LinearLayout
@@ -293,6 +280,7 @@
                         android:layout_marginHorizontal="5dp"/>
 
                     <CheckBox
+                        android:id="@+id/arCondicionadoCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -329,6 +317,7 @@
                         android:layout_marginHorizontal="5dp"/>
 
                     <CheckBox
+                        android:id="@+id/wifiCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -363,6 +352,7 @@
                         android:layout_marginHorizontal="5dp"/>
 
                     <CheckBox
+                        android:id="@+id/maquilaLavarCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -397,6 +387,7 @@
                         android:layout_marginHorizontal="5dp"/>
 
                     <CheckBox
+                        android:id="@+id/mobiliaCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

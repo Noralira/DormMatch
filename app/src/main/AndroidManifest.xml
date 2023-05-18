@@ -31,13 +31,15 @@
         <activity
             android:name=".ViewRoom"
             android:exported="false"/>
-
         <activity
-            android:name=".LoginActivity"
+            android:name=".CreateRoomActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".AnnounceListActivity"
             android:exported="false"/>
 
         <activity
-            android:name=".CreateRoomActivity"
+            android:name=".LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
