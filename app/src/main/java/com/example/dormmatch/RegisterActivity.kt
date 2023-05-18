@@ -81,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
                         Toast.makeText(
                             baseContext,
-                            "Authentication failed.",
+                            R.string.authentication_failed,
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
