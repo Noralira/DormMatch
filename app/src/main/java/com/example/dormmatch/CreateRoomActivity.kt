@@ -17,6 +17,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dormmatch.databinding.CriarEditarAnuncioBinding
+import com.example.dormmatch.fragments.Home
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -87,8 +88,6 @@ class CreateRoomActivity : AppCompatActivity() {
     }
 
     fun btnCriar(view: View) {
-        val intent = Intent(this, AnnounceListActivity::class.java)
-        startActivity(intent)
         validarDados()
     }
 
@@ -96,6 +95,8 @@ class CreateRoomActivity : AppCompatActivity() {
         onBackPressed()
     }
 
+
+    val input = readLine()
     private var titulo = ""
     private var descricao = ""
     private var telemovel = ""
@@ -120,26 +121,36 @@ class CreateRoomActivity : AppCompatActivity() {
         preco = binding.etPreco.text.toString().trim()
 
         if (binding.venda.isChecked){
-            tipo = "0"
+            tipo = "Venda"
         }else if (binding.arrendamento.isChecked){
-            tipo = "1"
+            tipo = "Arrendamento"
         }
 
         //validar
-        if (TextUtils.isEmpty(telemovel)){
+        if (TextUtils.isEmpty(telemovel.toString())){
             //sem telemovel
             binding.etContacto.error = R.string.insertPhoneNumber.toString()
-        }else if (TextUtils.isEmpty(titulo)){
+            return
+        }else if(imageForCapa.isEmpty()){
+            Toast.makeText(this, "Tem que adicionar uma imagem", Toast.LENGTH_LONG).show()
+            return
+        }
+        else if (TextUtils.isEmpty(titulo)){
             //sem titulo
             binding.etTitulo.error = R.string.insertTitle.toString()
+            return
         }else if (TextUtils.isEmpty(descricao)){
             //sem descricao
             binding.etDescricao.error = R.string.insertDescription.toString()
+            return
         }else if (TextUtils.isEmpty(localizacao)){
             //sem localizacao
             binding.etLocalizacao.error = R.string.insertAddress.toString()
-        }else if(binding.venda.isChecked==false && binding.arrendamento.isChecked==false){
+            return
+        }
+        else if(binding.venda.isChecked==false && binding.arrendamento.isChecked==false){
             binding.arrendamento.error = R.string.selectOp.toString()
+            return
         }else{
             //submter os dados para a bd
             guardaInfo()
@@ -157,12 +168,12 @@ class CreateRoomActivity : AppCompatActivity() {
         hashMap["imagemCapa"]=imageForCapa[0]
         hashMap["titulo"]=titulo
         hashMap["descricao"]=descricao
-        hashMap["telemovel"]=telemovel
+        hashMap["telemovel"]=telemovel.toInt()
         hashMap["arCondicionado"]=arCondicionado
         hashMap["wifi"]=wifi
         hashMap["mobilia"]=mobilia
         hashMap["maquinaLavar"]=maquinaLavar
-        hashMap["preco"]=preco
+        hashMap["preco"]=preco.toInt()
         hashMap["localizacao"]=localizacao
         hashMap["tipo"]=tipo
 
@@ -174,8 +185,7 @@ class CreateRoomActivity : AppCompatActivity() {
                 //caso de sucesso
                 Toast.makeText(this, R.string.propriedadeRegistada, Toast.LENGTH_SHORT).show()
 
-                //volta para a pagina inicial, neste momento vai para o perfil novamente
-                startActivity(Intent(this, ProfileActivity::class.java))
+                startActivity(Intent(this, AnnounceListActivity::class.java))
                 finish()
             }
             .addOnFailureListener {
