@@ -31,6 +31,12 @@
         <activity
             android:name=".ViewRoom"
             android:exported="false"/>
+        <activity
+            android:name=".CreateRoomActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".AnnounceListActivity"
+            android:exported="false"/>
 
         <activity
             android:name=".LoginActivity"

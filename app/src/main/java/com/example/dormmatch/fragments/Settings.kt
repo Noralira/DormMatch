@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.example.dormmatch.AnnounceListActivity
 import com.example.dormmatch.ProfileActivity
 import com.example.dormmatch.R
 import com.example.dormmatch.databinding.FragmentSettingsBinding
@@ -59,6 +60,11 @@ class Settings : Fragment() {
             val openURL = Intent(android.content.Intent.ACTION_VIEW)
             openURL.data = Uri.parse("https://www.ipvc.pt/")
             startActivity(openURL)
+        }
+
+        binding.ll5.setOnClickListener {
+            val intent = Intent(context, AnnounceListActivity::class.java)
+            startActivity(intent)
         }
 
     }

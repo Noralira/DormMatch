@@ -51,4 +51,18 @@
     <string name="username_required">Username is required</string>
     <string name="favoritos">Favoritos</string>
     <string name="authentication_failed">Authentication failed.</string>
+    <string name="insertPhoneNumber">Please insert a phone number</string>
+    <string name="insertTitle">Please insert a title</string>
+    <string name="insertDescription">Please insert a description</string>
+    <string name="insertAddress">Please insert an address</string>
+    <string name="selectOp">Please select a type</string>
+    <string name="propriedadeRegistada">Ad successfully registred</string>
+    <string name="registerFail">Could not register</string>
+
+    <string-array name="category">
+        <item>Apartamento</item>
+        <item>Casa</item>
+        <item>Outros</item>
+        <item>Quarto</item>
+    </string-array>
 </resources>

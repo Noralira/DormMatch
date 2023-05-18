@@ -61,7 +61,7 @@
             android:layout_height="40dp"
             android:src="@drawable/component_9" />
 
-        <TextView
+        <EditText
             android:id="@+id/nome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -86,8 +86,8 @@
             android:layout_height="40dp"
             android:src="@drawable/_icon__mobile_" />
 
-        <TextView
-            android:id="@+id/tele"
+        <EditText
+            android:id="@+id/telefone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="20dp"
@@ -110,13 +110,25 @@
             android:layout_height="40dp"
             android:src="@drawable/_icon__email_" />
 
-        <TextView
+        <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginHorizontal="20dp"/>
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/saveChanges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Guardar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ll_4"
+        />
+
 
 </RelativeLayout>

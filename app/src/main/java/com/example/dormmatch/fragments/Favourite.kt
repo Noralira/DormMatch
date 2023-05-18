@@ -2,22 +2,16 @@ package com.example.dormmatch.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBar
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dormmatch.R
 import com.example.dormmatch.ViewRoom
 import com.example.dormmatch.adapters.favouritePropriedadeAdapter
-import com.example.dormmatch.adapters.propriedadeAdapter
 import com.example.dormmatch.models.propriedade.Propriedade
-import com.example.dormmatch.models.propriedade.propriedadeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
