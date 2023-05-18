@@ -7,16 +7,12 @@ import android.view.View
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_activity)
+        setContentView(R.layout.criar_editar_anunciov2)
     }
 
-    fun btnLogin(view: View) {   setContentView(R.layout.home_user)}
-    fun btnRegister(view: View) {
-        setContentView(R.layout.registo_activity)
-    }
 
     fun btnVoltar(view: View) {
-        setContentView(R.layout.login_activity)
+        //setContentView(R.layout.login_activity)
     }
 
     fun usarCamara(view: View) {
