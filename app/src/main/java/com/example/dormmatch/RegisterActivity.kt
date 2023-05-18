@@ -13,6 +13,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dormmatch.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -66,13 +68,23 @@ class RegisterActivity : AppCompatActivity() {
 
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                    updateUI(null)
+                    if (task.exception is FirebaseAuthUserCollisionException) {
+                        val exception = task.exception as FirebaseAuthUserCollisionException
+                        val errorCode = exception.errorCode
+
+                        if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
+                            // Wrong password
+                            Toast.makeText(this, "Email already in use", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(
+                            baseContext,
+                            "Authentication failed.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
                 }
             }
         // [END create_user_with_email]
