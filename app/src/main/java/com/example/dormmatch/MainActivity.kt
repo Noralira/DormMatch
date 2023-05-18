@@ -18,4 +18,13 @@ class MainActivity : AppCompatActivity() {
     fun btnVoltar(view: View) {
         setContentView(R.layout.login_activity)
     }
+
+    fun usarCamara(view: View) {
+
+    }
+
+    fun selecionarFicheiros(view: View) {
+    }
+    fun guardar(view: View) {
+    }
 }
