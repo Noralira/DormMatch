@@ -9,6 +9,6 @@ data class Propriedade(
     var id_categoria: String ?= null,
     var imagem: String ?= null,
     var localizacao: String ?= null,
-    var preco: String ?= null,
+    var preco: Int ?= null,
     var titulo: String ?= null
 )
