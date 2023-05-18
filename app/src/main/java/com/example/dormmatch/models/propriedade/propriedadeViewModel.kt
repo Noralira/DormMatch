@@ -7,12 +7,16 @@ import com.example.dormmatch.repository.propriedadeRepository
 
 class propriedadeViewModel : ViewModel() {
 
-    private val repository : propriedadeRepository
-    private val _allPropriedade = MutableLiveData<List<Propriedade>>()
-    val allPropriedade : LiveData<List<Propriedade>> = _allPropriedade
+        private val repository : propriedadeRepository
+        private val _allPropriedade = MutableLiveData<List<Propriedade>>()
+        val allPropriedade : LiveData<List<Propriedade>> = _allPropriedade
 
-    init {
-        repository = propriedadeRepository().getInstance()
-        repository.loadPropriedade(_allPropriedade)
+        init {
+            repository = propriedadeRepository().getInstance()
+            repository.loadPropriedade(_allPropriedade)
+
+        }
+    /*fun filterLoadCategory(category: Int) {
+        repository.filterLoadCategory(category, _allPropriedade)
+    }*/
     }
-}

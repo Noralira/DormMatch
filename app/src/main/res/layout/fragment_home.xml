@@ -105,7 +105,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/bCasa"
+                    android:id="@+id/btnHouse"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -115,7 +115,7 @@
                     android:text="@string/house"
                     android:layout_marginEnd="5dp"/>
                 <Button
-                    android:id="@+id/b2"
+                    android:id="@+id/btnApart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -126,7 +126,8 @@
                     android:layout_marginEnd="5dp"/>
 
                 <Button
-                    android:id="@+id/b3"
+                    android:id="@+id/btnRoom"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -136,7 +137,8 @@
                     android:text="@string/room"
                     android:layout_marginEnd="5dp"/>
                 <Button
-                    android:id="@+id/b4"
+                    android:id="@+id/btnOthers"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
