@@ -13,7 +13,7 @@
     <string name="map">Mapa</string>
     <string name="settings">Definições</string>
     <string name="room_title">Titulo Quarto</string>
-    <string name="welcome">Bem Vindo</string>
+    <string name="hello">Olá</string>
     <string name="username">Nome de Utilizador</string>
     <string name="password">Palavra-Passe</string>
     <string name="recover_password">Recuperar palavra-passe</string>
@@ -36,5 +36,18 @@
     <string name="information">Informação</string>
     <string name="account_created">Conta criada com sucesso.</string>
     <string name="username_required">O nome de utilizador é obrigatório</string>
+    <string name="wi_fi">Wi-Fi</string>
+    <string name="email">Email</string>
+    <string name="perfil">Perfil</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="traducao">Tradução</string>
+    <string name="favoritos">Favoritos</string>
     <string name="authentication_failed">Autenticação falhou.</string>
+    <string name="insertPhoneNumber">Por favor insira um número de telefone</string>
+    <string name="insertTitle">Por favor insira um título</string>
+    <string name="insertDescription">Por favor insira uma descrição</string>
+    <string name="insertAddress">Por favor insira uma morada</string>
+    <string name="selectOp">Por favor insira um tipo</string>
+    <string name="propriedadeRegistada">Anúncio criado com sucesso</string>
+    <string name="registerFail">Não foi possível criar o anúncio</string>
 </resources>

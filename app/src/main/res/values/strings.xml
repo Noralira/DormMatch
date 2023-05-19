@@ -11,7 +11,7 @@
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <string name="home">Home</string>
-    <string name="welcome">Welcome!</string>
+    <string name="hello">Hello</string>
     <string name="category">Category</string>
     <string name="house">House</string>
     <string name="apart">Apart.</string>
@@ -24,22 +24,22 @@
     <string name="room_title">Room Title</string>
     <string name="features">Features</string>
     <string name="wi_fi">Wi-Fi</string>
-    <string name="maquina_lavar">Máquina de Lavar</string>
-    <string name="mobilia">Mobilia</string>
-    <string name="descricao">Descrição</string>
-    <string name="call">Contactar</string>
-    <string name="contacto">Contacto:</string>
-    <string name="ar_condicionado">Ar Condicionado</string>
-    <string name="galeria">Galeria</string>
+    <string name="maquina_lavar">Washing Machine</string>
+    <string name="mobilia">Furniture</string>
+    <string name="descricao">Description:</string>
+    <string name="call">Contact</string>
+    <string name="contacto">Contact::</string>
+    <string name="ar_condicionado">Air Conditioning</string>
+    <string name="galeria">Gallery</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="recover_password">Recover Password</string>
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
     <string name="email">Email</string>
-    <string name="perfil">Perfil</string>
-    <string name="configuracoes">Configurações</string>
-    <string name="traducao">Tradução</string>
+    <string name="perfil">Profile</string>
+    <string name="configuracoes">Settings</string>
+    <string name="traducao">Translation</string>
     <string name="wrong_password">Wrong password</string>
     <string name="wrong_email">Wrong email</string>
     <string name="email_required">Email is required</string>
@@ -49,15 +49,15 @@
     <string name="information">Information</string>
     <string name="account_created">Account successfully created.</string>
     <string name="username_required">Username is required</string>
-    <string name="favoritos">Favoritos</string>
+    <string name="favoritos">Favourites</string>
     <string name="authentication_failed">Authentication failed.</string>
     <string name="insertPhoneNumber">Please insert a phone number</string>
     <string name="insertTitle">Please insert a title</string>
     <string name="insertDescription">Please insert a description</string>
     <string name="insertAddress">Please insert an address</string>
     <string name="selectOp">Please select a type</string>
-    <string name="propriedadeRegistada">Ad successfully registred</string>
-    <string name="registerFail">Could not register</string>
+    <string name="propriedadeRegistada">Announcement successfully created</string>
+    <string name="registerFail">Could not register the announcement</string>
 
     <string-array name="category">
         <item>Apartamento</item>
