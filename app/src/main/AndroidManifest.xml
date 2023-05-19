@@ -21,26 +21,33 @@
             android:value="AIzaSyA7hMvJjx2m5yeAWBJ6ra-LLIKPEU6fPtU"/>
         <activity
             android:name=".MenuActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RegisterActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ProfileActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ViewRoom"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CreateRoomActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AnnounceListActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
