@@ -9,7 +9,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.criar_editar_anuncio)
     }
-
+    fun usarCamara(view: View) {
+    }
+    fun selecionarFicheiros(view: View) {
+    }
+    fun guardar(view: View) {
+    }
 
     fun btnVoltar(view: View) {
         //setContentView(R.layout.login_activity)

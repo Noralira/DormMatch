@@ -42,7 +42,5 @@ class MenuActivity: AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
-    override fun onBackPressed() {
-        return
-    }
+    
 }
