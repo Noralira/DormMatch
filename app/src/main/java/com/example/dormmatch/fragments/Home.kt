@@ -113,9 +113,9 @@ class Home : Fragment() {
             startActivity(intent)
         }
 
-
+        val helloText = getText(R.string.hello)
         val textWelcome = view.findViewById<TextView>(R.id.welcome)
-        textWelcome.text = "Olá, " + firebaseAuth.currentUser?.displayName.toString() + "!"
+        textWelcome.text = "$helloText, " + firebaseAuth.currentUser?.displayName.toString() + "!"
 
         val logoutButton = view.findViewById<Button>(R.id.logout)
         logoutButton.setOnClickListener {
