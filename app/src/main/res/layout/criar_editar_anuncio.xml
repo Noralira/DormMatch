@@ -16,33 +16,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_header"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_arrow_back_ios_new_24"
-                app:tint="@color/blue"
-                android:onClick="btnVoltar"/>
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tv_criar_anuncio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Criar Anúncio"
-                android:textColor="@color/blue"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginVertical="5dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back_ios_new_24"
+                    app:tint="@color/blue"
+                    android:onClick="btnVoltar"
+                    android:paddingRight="50dp" />
+
+                <TextView
+                    android:id="@+id/tv_criar_anuncio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginVertical="5dp"
+                    android:text="@string/create_announcement"
+                    android:textColor="@color/blue"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/tv_titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Título"
-                android:layout_below="@+id/tv_criar_anuncio"
+                android:text="@string/title"
+                android:layout_below="@+id/ll_header"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
                 android:textSize="14dp"
+                android:paddingTop="15dp"
                 android:layout_marginVertical="5dp"/>
 
             <EditText
@@ -52,14 +63,15 @@
                 android:layout_below="@id/tv_titulo"
                 android:background="@drawable/rounded_edit_text"
                 android:paddingVertical="5dp"
-                android:layout_marginVertical="5dp"/>
+                android:layout_marginVertical="5dp"
+                android:paddingHorizontal="15dp"/>
 
 
             <TextView
                 android:id="@+id/tv_descricao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descrição"
+                android:text="@string/descricao"
                 android:layout_below="@+id/et_titulo"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
@@ -73,41 +85,33 @@
                 android:layout_below="@id/tv_descricao"
                 android:background="@drawable/rounded_edit_text"
                 android:paddingVertical="5dp"
-                android:layout_marginVertical="5dp"/>
+                android:layout_marginVertical="5dp"
+                android:paddingHorizontal="15dp"/>
 
             <TextView
                 android:id="@+id/tv_categoria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Categoria"
+                android:text="@string/category"
                 android:layout_below="@+id/et_descricao"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
                 android:textSize="14dp"
                 android:layout_marginVertical="5dp"/>
 
-            <!--<EditText
-                android:id="@+id/et_categoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_categoria"
-                android:background="@drawable/rounded_edit_text"
-                android:paddingVertical="5dp"
-                android:layout_marginVertical="5dp"
-                -->
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_categoria"
-                android:layout_marginVertical="5dp"
-                android:background="@drawable/rounded_edit_text"/>
+                android:background="@drawable/rounded_edit_text"
+                android:paddingVertical="5dp" />
 
             <TextView
                 android:id="@+id/tv_localizacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Localização"
+                android:text="@string/location"
                 android:layout_below="@+id/spinner"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
@@ -121,13 +125,14 @@
                 android:layout_below="@id/tv_localizacao"
                 android:background="@drawable/rounded_edit_text"
                 android:paddingVertical="5dp"
-                android:layout_marginVertical="5dp"/>
+                android:layout_marginVertical="5dp"
+                android:paddingHorizontal="15dp"/>
 
             <TextView
                 android:id="@+id/tv_preco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Preço"
+                android:text="@string/price"
                 android:layout_below="@+id/et_localizacao"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
@@ -141,13 +146,14 @@
                 android:layout_below="@id/tv_preco"
                 android:background="@drawable/rounded_edit_text"
                 android:paddingVertical="5dp"
-                android:layout_marginVertical="5dp"/>
+                android:layout_marginVertical="5dp"
+                android:paddingHorizontal="15dp"/>
 
             <TextView
                 android:id="@+id/tv_contacto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contacto"
+                android:text="@string/contacto"
                 android:layout_below="@+id/et_preco"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
@@ -161,14 +167,15 @@
                 android:layout_below="@id/tv_contacto"
                 android:background="@drawable/rounded_edit_text"
                 android:paddingVertical="5dp"
-                android:layout_marginVertical="5dp"/>
+                android:layout_marginVertical="5dp"
+                android:paddingHorizontal="15dp"/>
 
 
             <TextView
                 android:id="@+id/tv_tipo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tipo"
+                android:text="@string/type"
                 android:layout_below="@id/et_contacto"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
@@ -188,7 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Venda"
+                    android:text="@string/selling"
                     android:textColor="@color/blue"
                     android:buttonTint="@color/blue"
                     android:textStyle="bold"
@@ -199,7 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Arrendamento"
+                    android:text="@string/rent"
                     android:textColor="@color/blue"
                     android:buttonTint="@color/blue"
                     android:textStyle="bold"
@@ -211,7 +218,7 @@
                 android:id="@+id/tv_imagem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Imagem"
+                android:text="@string/image"
                 android:layout_below="@+id/ll_tipo"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
@@ -222,7 +229,7 @@
                 android:id="@+id/btn_ficheiros"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Selecionar ficheiros"
+                android:text="@string/select_files"
                 android:layout_below="@id/tv_imagem"
                 android:layout_centerHorizontal="true"
                 android:layout_marginVertical="5dp"
@@ -236,7 +243,7 @@
                 android:id="@+id/tv_caracteristicas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Características"
+                android:text="@string/features"
                 android:layout_below="@+id/btn_ficheiros"
                 android:textColor="@color/blue"
                 android:textStyle="bold"
@@ -272,7 +279,7 @@
                         android:id="@+id/tv_AC"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:text="Ar Condicionado"
+                        android:text="@string/ar_condicionado"
                         android:textColor="@color/blue"
                         android:textStyle="bold"
                         android:textSize="14dp"
@@ -309,7 +316,7 @@
                         android:id="@+id/tv_wifi"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:text="Wifi"
+                        android:text="@string/wi_fi"
                         android:textColor="@color/blue"
                         android:textStyle="bold"
                         android:textSize="14dp"
@@ -344,7 +351,7 @@
                         android:id="@+id/tv_maquinas_lavar"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:text="Máquina de Lavar"
+                        android:text="@string/maquina_lavar"
                         android:textColor="@color/blue"
                         android:textStyle="bold"
                         android:textSize="14dp"
@@ -379,7 +386,7 @@
                         android:id="@+id/tv_mobilia"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:text="Mobilado"
+                        android:text="@string/mobilia"
                         android:textColor="@color/blue"
                         android:textStyle="bold"
                         android:textSize="14dp"
@@ -399,7 +406,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Criar"
+                android:text="@string/create"
                 android:layout_below="@+id/rl_caracteristicas"
                 android:layout_centerHorizontal="true"
                 android:layout_marginVertical="10dp"

@@ -66,4 +66,14 @@
         <item>Quarto</item>
     </string-array>
     <string name="privacy">Privacy and Sharing</string>
+    <string name="create_announcement">Create Announcement</string>
+    <string name="title">Title</string>
+    <string name="location">Location</string>
+    <string name="price">Price</string>
+    <string name="type">Type</string>
+    <string name="selling">For Sale</string>
+    <string name="rent">Rent</string>
+    <string name="image">Image</string>
+    <string name="select_files">Select Files</string>
+    <string name="create">Create</string>
 </resources>

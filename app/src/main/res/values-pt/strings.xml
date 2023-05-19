@@ -51,4 +51,14 @@
     <string name="propriedadeRegistada">Anúncio criado com sucesso</string>
     <string name="registerFail">Não foi possível criar o anúncio</string>
     <string name="privacy">Privacidade e Partilha</string>
+    <string name="create_announcement">Criar anúncio</string>
+    <string name="title">Título</string>
+    <string name="location">Localização</string>
+    <string name="price">Preço</string>
+    <string name="type">Tipo</string>
+    <string name="selling">Venda</string>
+    <string name="rent">Arrendar</string>
+    <string name="image">Imagem</string>
+    <string name="select_files">Selecionar Ficheiros</string>
+    <string name="create">Criar</string>
 </resources>
