@@ -15,12 +15,5 @@ class MainActivity : AppCompatActivity() {
         //setContentView(R.layout.login_activity)
     }
 
-    fun usarCamara(view: View) {
 
-    }
-
-    fun selecionarFicheiros(view: View) {
-    }
-    fun guardar(view: View) {
-    }
 }

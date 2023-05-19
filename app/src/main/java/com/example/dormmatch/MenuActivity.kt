@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dormmatch.databinding.MenuBottomNavbarBinding
-import com.example.dormmatch.fragments.*
+import com.example.dormmatch.fragments.Favourite
+import com.example.dormmatch.fragments.Home
+import com.example.dormmatch.fragments.Maps
+import com.example.dormmatch.fragments.Settings
 
 class MenuActivity: AppCompatActivity() {
     private lateinit var binding: MenuBottomNavbarBinding
@@ -39,5 +42,7 @@ class MenuActivity: AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
-
+    override fun onBackPressed() {
+        return
+    }
 }
