@@ -62,4 +62,8 @@
     <string name="select_files">Selecionar Ficheiros</string>
     <string name="create">Criar</string>
     <string name="go_back">Voltar</string>
+    <string name="change_language">Alterar Linguagem</string>
+    <string name="english">Inglês</string>
+    <string name="portuguese">Português</string>
+    <string name="save">Guardar Alterações</string>
 </resources>

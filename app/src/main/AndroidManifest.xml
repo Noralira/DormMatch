@@ -45,6 +45,11 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ChangeLanguageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">

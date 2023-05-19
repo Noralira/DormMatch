@@ -59,6 +59,7 @@
     <string name="propriedadeRegistada">Announcement successfully created</string>
     <string name="registerFail">Could not register the announcement</string>
 
+
     <string-array name="category">
         <item>Apartamento</item>
         <item>Casa</item>
@@ -77,4 +78,8 @@
     <string name="select_files">Select Files</string>
     <string name="create">Create</string>
     <string name="go_back">Return</string>
+    <string name="change_language">Change Language</string>
+    <string name="english">English</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="save">Save Changes</string>
 </resources>

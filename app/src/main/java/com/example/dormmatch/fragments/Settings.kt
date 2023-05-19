@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.example.dormmatch.AnnounceListActivity
+import com.example.dormmatch.ChangeLanguageActivity
 import com.example.dormmatch.ProfileActivity
 import com.example.dormmatch.R
 import com.example.dormmatch.databinding.FragmentSettingsBinding
@@ -67,6 +68,10 @@ class Settings : Fragment() {
             startActivity(intent)
         }
 
+        binding.trad.setOnClickListener{
+            val intent = Intent(context, ChangeLanguageActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {
