@@ -40,7 +40,7 @@
     <string name="email">Email</string>
     <string name="perfil">Perfil</string>
     <string name="configuracoes">Configurações</string>
-    <string name="traducao">Tradução</string>
+    <string name="language">Linguagem</string>
     <string name="favoritos">Favoritos</string>
     <string name="authentication_failed">Autenticação falhou.</string>
     <string name="insertPhoneNumber">Por favor insira um número de telefone</string>
@@ -50,4 +50,5 @@
     <string name="selectOp">Por favor insira um tipo</string>
     <string name="propriedadeRegistada">Anúncio criado com sucesso</string>
     <string name="registerFail">Não foi possível criar o anúncio</string>
+    <string name="privacy">Privacidade e Partilha</string>
 </resources>
