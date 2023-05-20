@@ -28,6 +28,9 @@ class ProfileActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("user")
 
         showData()
+        binding.nome.setText(auth.currentUser?.displayName)
+        binding.email.setText(auth.currentUser?.email)
+
 
         binding.saveChanges.setOnClickListener{
             editarNomeEmailTele("username", binding.nome.text.toString())
@@ -38,17 +41,20 @@ class ProfileActivity : AppCompatActivity() {
 
     fun showData() {
         val currentUser = auth.currentUser
+        //binding.email.text = currentUser.toString().email
+
+        //binding.nome.text.setText()
+
 
         database.child(currentUser!!.uid).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val userData = dataSnapshot.value as? Map<String, String>
-                val displayName = userData?.get("username")
-                val email = userData?.get("email")
+                //val displayName = userData?.get("username")
+                //val email = userData?.get("email")
                 val phoneNumber = userData?.get("telefone")
 
-                binding.nome.setText(displayName)
-                binding.email.setText(email)
+
                 binding.telefone.setText(phoneNumber)
             }
 
